@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ditto</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
+	<link rel="stylesheet" href="../../../fonts/icomoon/style.css">
+	
+	<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../css/magnific-popup.css">
+	<link rel="stylesheet" href="../../../css/jquery-ui.css">
+	<link rel="stylesheet" href="../../../css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
+	
+	
+	<link rel="stylesheet" href="../../../css/aos.css">
+	
+	<link rel="stylesheet" href="../../../css/style.css">
+	<link rel="icon" href="../../../icon/dittoIcon.ico">
+</head>
+<body>
+<div class="site-wrap">
+    <div th:replace="~{features/top :: replTop}"></div>
+    <div class="bg-light py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-0"><a href="man">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Modify</strong></div>
+            </div>
+        </div>
+    </div>
+    <div class="site-section">
+        <div class="container">
+            <div class="card" style="border-radius: 1rem;">
+                <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                    <div class="card-body p-4 p-lg-5 text-black">
+                        <div class="d-flex align-items-center mb-3 pb-1">
+                            <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                            <span class="h1 fw-bold mb-0">수정</span><br>
+                        </div>
+                        <p class="small text-muted">내 정보 수정해요.</p><br>
+                        <div class="form-outline mb-4">
+                            <form action="/admin/updateMember" method="post" class="container">
+                                <div>
+                            <label for="memberNo">회원번호 : </label>
+                            <span th:text="${member.memberNo}"></span>
+                        </div>
+                                <div>
+                                    <label for="loginId">아이디 : </label>
+                                  <span th:text="${member.loginId}"></span>
+                                </div>
+                                <div>
+                                    <label for="loginPw">비밀번호 : </label>
+                                    <input type="password" id="loginPw" name="loginPw" required>
+                                </div>
+                                <div>
+                                    <label for="memberNm">이름 : </label>
+                                    <input type="text" id="memberNm" name="memberNm" th:value="${member.memberNm}" required>
+                                </div>
+                                <div>
+                                    <label for="memberEmail">이메일 : </label>
+                                    <input type="email" id="memberEmail" name="memberEmail" th:value="${member.memberEmail}" required>
+                                </div>
+                                <div>
+                                    <label for="memberAddr">주소 : </label>
+                                    <input type="text" id="memberAddr" name="memberAddr" th:value="${member.memberAddr}" required>
+                                </div>
+                                <div>
+                                    <label for="memberZipcd">우편번호 : </label>
+                                    <input type="text" id="memberZipcd" name="memberZipcd" th:value="${member.memberZipcd}" required>
+                                </div>
+                                <div>
+                                    <label for="memberTel">전화번호 : </label>
+                                    <input type="tel" id="memberTel" name="memberTel" th:value="${member.memberTel}" required>
+                                </div>	  
+                                   <button type="submit" class="btn btn-primary btn-lg" >수정하기</button>
+                            </form>
+                        </div>                   
+                        <a href="#!" class="small text-muted">Terms of use.</a>
+                        <a href="#!" class="small text-muted">Privacy policy</a><br>               
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="~{features/footer :: replFoot}"></div>
+</div>
+<div th:replace="~{shared/script/TempScript :: repscript}"></div>
+
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!--******************************************************************************
+	Ditto ahop 페이지
+
+	update : 2024-05-20
+	
+	관리자 : 최희정
+	
+  코딩 매뉴얼.
+	- 상품을 리스트로 출력하는 페이지입니다.
+	- 이미지, 가격, 상품명이 보이도록 만들어주세요. 다른 정보는 시간이 있을 때 추가 해주세요
+	- 값을 받아서 분류별로 상품이 보이도록 해주세요.
+	- 쿼리를 써야 하는데 해보시고 안되면 말해주세요
+	- 수업 내용 중 movie_Review를 참고하면 이해에 도움이 될 것입니다.
+	- 리스트는 페이징처리를 해주세요
+	
+	- 셀러 단독shop 리스트를 보여주는 페이지
+	
+	
+ ******************************************************************************-->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=divice-width, initial-scale=1.0" >
+
+<title>Ditto</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
+	<link rel="stylesheet" href="../../../fonts/icomoon/style.css">
+	
+	<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../css/magnific-popup.css">
+	<link rel="stylesheet" href="../../../css/jquery-ui.css">
+	<link rel="stylesheet" href="../../../css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
+	
+	
+	<link rel="stylesheet" href="../../../css/aos.css">
+	
+	<link rel="stylesheet" href="../../../css/style.css">
+</head>
+<body>
+	<div class="site-wrap">
+		<div th:replace="~{features/top :: replTop}"></div>
+		    <!-- 메인 중간 화면 -->
+    <div class="site-blocks-cover inner-page" data-aos="fade">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 ml-auto order-md-2 align-self-start">
+            <div class="site-block-cover-content">
+            <h2 class="sub-title">#2024 최우수 셀러 선정</h2>
+            <h1>I am 신뢰에요</h1>
+            <p><a href="shop" class="btn btn-black rounded-0">셀러 단독샵</a></p>
+            </div>
+          </div>
+          <div class="col-md-6 order-1 align-self-end">
+            <img src="../../../images/model_4.png" alt="Image" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+<!-- 메인 광고 밑에 home & shop 메뉴 -->
+    <div class="custom-border-bottom py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0">
+          <a href="main">Home</a>
+          <span class="mx-2 mb-0">/</span> 
+          <strong class="text-black">Shop</strong>
+          <span class="mx-2 mb-0">/</span> 
+          <strong class="text-black">QnA</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+<!-- 항목 시작 전 메뉴 -->
+
+
+    <div class="site-section">
+      <div class="container">
+
+        <div class="row mb-5">
+          <div class="col-md-9 order-1">
+
+	<form action="/admin/sellerQna" method="get" id="sellerQna"></form>  	
+           
+           <p><a href="inquiry" class="btn btn-black rounded-0">문의하기</a></p>
+           
+           <table class="table table-striped" style="text-align:center">
+            
+            <thead>
+            <tr>
+                <th scope="col">문의번호</th>
+                <th scope="col">문의제목</th>
+                <th scope="col">상품코드</th>
+                <th scope="col">회원id</th>
+                <th scope="col">답변여부</th>
+
+            </tr>
+            </thead>
+            
+            
+            <tbody>
+            
+            	<th:block th:each="dto : ${result}">
+            	
+            	<tr>
+            	
+            		<td>[[${dto.qnaNo}]]</td>
+            		
+            		<td>
+            		<a th:href="@{/admin/readSQ(qnaNo=${dto.qnaNo})}">
+            		
+            		[[${dto.inquiryTitle}]]
+            		</a>
+            		
+            		</td>
+            		
+            		<td>[[${dto.productId}]]</td>
+            		<td>[[${dto.loginId}]]</td>
+            		<td>[[${dto.inquiryStatus}]]</td>
+            	
+            	</tr>
+			</th:block>
+
+            </tbody>
+            
+            
+         
+		</table>
+           
+
+          </div>
+         </div>
+       </div>
+      </div>
+
+
+		<div th:replace="~{features/footer :: replFoot}"></div>
+	</div>
+		<div th:replace="~{shared/script/TempScript :: repscript}"></div>
+</body>
+</html>

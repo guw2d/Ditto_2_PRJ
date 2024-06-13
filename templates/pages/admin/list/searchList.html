@@ -1,0 +1,46 @@
+<!--******************************************************************************
+	Ditto 상품검색 페이지
+
+	update : 2024-05-20
+	
+	관리자 : 최희정
+	
+  코딩 매뉴얼.
+  - 검색을 통해 상품명을 기준으로 상품 리스트를 출력하는 페이지
+  - features/top에서 form을이용 넘어오는 데이터를 리스트로 출력 top 파일 확인 
+  
+ ******************************************************************************-->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=divice-width, initial-scale=1.0" >
+
+<title>Ditto</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
+	<link rel="stylesheet" href="../../../fonts/icomoon/style.css">
+	
+	<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../css/magnific-popup.css">
+	<link rel="stylesheet" href="../../../css/jquery-ui.css">
+	<link rel="stylesheet" href="../../../css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
+	
+	
+	<link rel="stylesheet" href="../../../css/aos.css">
+	
+	<link rel="stylesheet" href="../../../css/style.css">
+	<link rel="icon" href="../../../icon/dittoIcon.ico">
+</head>
+<body>
+	<div class="site-wrap">
+		<div th:replace="~{features/top :: replTop}"></div>
+		
+		<div th:replace="~{features/footer :: replFoot}"></div>
+	</div>
+		<div th:replace="~{shared/script/TempScript :: repscript}"></div>
+</body>
+</html>

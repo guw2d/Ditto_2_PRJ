@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ditto</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
+   <link rel="stylesheet" href="../../../fonts/icomoon/style.css">
+   
+   <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+   <link rel="stylesheet" href="../../../css/magnific-popup.css">
+   <link rel="stylesheet" href="../../../css/jquery-ui.css">
+   <link rel="stylesheet" href="../../../css/owl.carousel.min.css">
+   <link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
+   
+   
+   <link rel="stylesheet" href="../../../css/aos.css">
+   
+   <link rel="stylesheet" href="../../../css/style.css">
+</head>
+<body>
+    <div class="site-wrap">
+        <div th:replace="~{features/top :: replTop}"></div>
+        <div class="bg-light py-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 mb-0"><a href="index">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">secession</strong></div>
+                </div>
+            </div>
+        </div>
+        <div class="site-section">
+            <div class="container">
+                <div class="card" style="border-radius: 1rem;">
+                    <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                        <div class="card-body p-4 p-lg-5 text-black">
+                        
+                            <form action="/admin/withdraw" method="post" class="container">
+                                <div class="d-flex align-items-center mb-3 pb-1">
+                                    <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                                    <span class="h1 fw-bold mb-0">계정 탈퇴하기</span>
+                                </div>
+                                
+                               
+                                
+                                <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">가입 하셨던 ID 와 PW 를 입력해주세요.</h5>
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="loginId" name="loginId" class="form-control form-control-lg" required="required" placeholder="id"/>
+                                    <label class="form-label" for="username">ID</label>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <input type="password" id="loginPw" name="loginPw" class="form-control form-control-lg" required="required" placeholder="password"/>
+                                    <label class="form-label" for="password">Password</label>
+                                </div>
+                                <div class="pt-1 mb-4">
+                                    <button class="btn btn-dark btn-lg btn-block" type="submit">탈퇴하기</button>
+                                </div>
+                      		
+                       
+                                <a href="#!" class="small text-muted">Terms of use.</a>
+                                <a href="#!" class="small text-muted">Privacy policy</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div th:replace="~{features/footer :: replFoot}"></div>
+    </div>
+    <div th:replace="~{shared/script/TempScript :: repscript}"></div>
+    
+    
+    
+<!-- 회원가입 정상 등록 시, 알럿 -->
+<script th:if="${withdrawAlert}">
+    alert("아이디 또는 비밀번호를 다시 확인해주세요.");
+</script>
+    
+
+
+</body>
+</html>

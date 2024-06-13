@@ -1,0 +1,97 @@
+<!--******************************************************************************
+	Ditto 새로운 페이지
+
+	update : 2024-05-20
+	
+	관리자 : 박낙주
+	
+  코딩 매뉴얼.
+  -  
+  
+ ******************************************************************************-->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=divice-width, initial-scale=1.0" >
+
+<title>Ditto 마스터</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
+	<link rel="stylesheet" href="../../../fonts/icomoon/style.css">
+	
+	<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../css/magnific-popup.css">
+	<link rel="stylesheet" href="../../../css/jquery-ui.css">
+	<link rel="stylesheet" href="../../../css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
+	
+	
+	<link rel="stylesheet" href="../../../css/aos.css">
+	
+	<link rel="stylesheet" href="../../../css/style.css">
+	<link rel="icon" href="../../../icon/dittoMIcon.ico">
+</head>
+<body>
+	<div class="site-wrap">
+		<div th:replace="~{features/m_top :: replTop}"></div>
+		<div class="site-wrap">
+		<div class="site-section">
+      <div class="container">
+        <div class="title-section mb-5">
+		<th:block th:fragment="content">
+		  
+		 <table class="table table-striped" style="text-align:center">
+            <thead>
+            <tr>
+                <th scope="col">문의번호</th>
+                <th scope="col">문의제목</th>
+                <th scope="col">회원아이디</th>
+                <th scope="col">답변여부</th>
+                <th scope="col">답변</th>
+            </tr>
+            </thead>
+         <tbody>
+		<tr th:each="dto : ${result.dtoList}" >
+			 <td>
+                        [[${dto.mQnaNo}]]
+                </td>
+                <td> <a th:href="@{qnamodi(mQnaNo=${dto.mQnaNo})}" > [[${dto.mQnaTitle}]]</a></td>
+                <td> [[${dto.loginId}]]</td>
+                <td> [[${dto.mQnaStatus}]]</td>
+                <th scope="col"><a th:href="@{qnamodi(mQnaNo=${dto.mQnaNo})}" >
+                <button type="button" class="btn btn-outline-primary m-2">답변</button></a></th>
+		</tr>
+		</table>
+		     
+		 </th:block>
+		         <ul class="pagination h-100 justify-content-center align-items-center">
+
+            <li class="page-item " th:if="${result.prev}">
+                <a class="page-link" th:href="@{memberList(page= ${result.start -1})}" tabindex="-1">이전</a>
+            </li>
+
+            <li th:class=" 'page-item ' + ${result.page == page?'active':''} " th:each="page: ${result.pageList}">
+                <a class="page-link" th:href="@{memberList(page = ${page})}">
+                    [[${page}]]
+                </a>
+            </li>
+
+            <li class="page-item" th:if="${result.next}">
+                <a class="page-link" th:href="@{memberList(page= ${result.end + 1} )}">다음</a>
+            </li>
+        </ul>
+        		   <form action="qnaList" method="get" id="searchForm">
+				
+			
+			</form>
+		 </div>
+		 </div>
+		 </div>
+	</div>
+	</div>
+		<div th:replace="~{shared/script/TempScript :: repscript}"></div>
+</body>
+</html>

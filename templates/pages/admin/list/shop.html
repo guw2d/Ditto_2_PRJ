@@ -1,0 +1,267 @@
+<!--******************************************************************************
+	Ditto ahop 페이지
+
+	update : 2024-05-20
+	
+	관리자 : 최희정
+	
+  코딩 매뉴얼.
+	- 상품을 리스트로 출력하는 페이지입니다.
+	- 이미지, 가격, 상품명이 보이도록 만들어주세요. 다른 정보는 시간이 있을 때 추가 해주세요
+	- 값을 받아서 분류별로 상품이 보이도록 해주세요.
+	- 쿼리를 써야 하는데 해보시고 안되면 말해주세요
+	- 수업 내용 중 movie_Review를 참고하면 이해에 도움이 될 것입니다.
+	- 리스트는 페이징처리를 해주세요
+	
+	- 셀러 단독shop 리스트를 보여주는 페이지
+	
+	
+ ******************************************************************************-->
+ <!DOCTYPE html>
+ <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+ 
+ <head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=divice-width, initial-scale=1.0" >
+ 
+ <title>Ditto</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
+    <link rel="stylesheet" href="../../../fonts/icomoon/style.css">
+    
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../css/magnific-popup.css">
+    <link rel="stylesheet" href="../../../css/jquery-ui.css">
+    <link rel="stylesheet" href="../../../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
+    
+    
+    <link rel="stylesheet" href="../../../css/aos.css">
+    
+    <link rel="stylesheet" href="../../../css/style.css">
+ </head>
+ <body>
+    <div class="site-wrap">
+       <div th:replace="~{features/top :: replTop}"></div>
+           <!-- 메인 중간 화면 -->
+     <div class="site-blocks-cover inner-page" data-aos="fade">
+       <div class="container">
+         <div class="row">
+           <div class="col-md-6 ml-auto order-md-2 align-self-start">
+             <div class="site-block-cover-content">
+             <h2 class="sub-title">#2024 최우수 셀러 선정</h2>
+             <h1>New Arrival S/S season</h1>
+             <p><a href="sellerQna" class="btn btn-black rounded-0">QnA</a></p>
+             <p><a href="shop" class="btn btn-black rounded-0">셀러 단독샵</a></p>
+             </div>
+           </div>
+           <div class="col-md-6 order-1 align-self-end">
+             <img src="../../../images/min.png" alt="Image" class="img-fluid">
+           </div>
+         </div>
+       </div>
+     </div>
+ 
+ 
+ 
+ 
+ 
+ <!-- 메인 광고 밑에 home & shop 메뉴 -->
+     <div class="custom-border-bottom py-3">
+       <div class="container">
+         <div class="row">
+           <div class="col-md-12 mb-0"><a href="main">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Shop</strong></div>
+         </div>
+       </div>
+     </div>
+ 
+ 
+ 
+ 
+ <!-- 항목 시작 전 메뉴 -->
+ 
+ 
+     <div class="site-section">
+       <div class="container">
+ 
+         <div class="row mb-5">
+           <div class="col-md-9 order-1">
+ 
+             <div class="row align">
+               <div class="col-md-12 mb-5">
+                 <div class="float-md-left"><h2 class="text-black h5">셀러 단독샵</h2></div>
+                 <div class="d-flex">
+                   <div class="dropdown mr-1 ml-md-auto">
+                     <button type="button" class="btn btn-white btn-sm dropdown-toggle px-4" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       Latest
+                     </button>
+                     <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                       <a class="dropdown-item" href="man">Man</a>
+                       <a class="dropdown-item" href="women">women</a>
+                       <a class="dropdown-item" href="children">Children</a>
+                     </div>
+                   </div>
+                  
+                  
+           
+                   <div class="btn-group">
+                     <button type="button" class="btn btn-white btn-sm dropdown-toggle px-4" id="dropdownMenuReference" data-toggle="dropdown">Reference</button>
+                     <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+                       <a class="dropdown-item" href="#">Relevance</a>
+                       <a class="dropdown-item" href="#">Name, A to Z</a>
+                       <a class="dropdown-item" href="#">Name, Z to A</a>
+                       <div class="dropdown-divider"></div>
+                       <a class="dropdown-item" href="#">Price, low to high</a>
+                       <a class="dropdown-item" href="#">Price, high to low</a>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+             
+             
+             
+             
+             
+    <!-- 메인 상품 목록 --> 
+             <div class="row mb-5">
+             
+             <form action="/admin/shop" method="get" id="shop"></form>
+ 
+            <!-- 루프를 돌면서 상품을 가져온다 -->
+               <div class="col-lg-6 col-md-6 item-entry mb-4" th:each="dto : ${result}">
+               <div th:if="${dto.userId == 'seller1'}">
+                 <!-- 이미지바디 쪽을 클릭하면 해당상품 상세정보로 이동하게 하는 코드 -->
+                 <a th:href="@{/admin/shopMax(prodId = ${dto.prodId})}" class="product-item md-height bg-gray d-block">
+                 <!-- 이미지불러오는코드 추후정리 --> <img src="../../../images/prod_2.png" alt="Image" class="img-fluid">
+                 </a>
+                 
+                 <!-- 상품명을 클릭하면 해당상품 상세보기로 이동하게 하는 코드 -->
+                 <h2 class="item-title"><a th:href="@{/admin/shopMax(prodId = ${dto.prodId})}">[[${dto.prodNm}]]</a></h2>
+                 
+                 <!-- 제품 개별 가격 -->
+                 <strong class="item-price">[[${dto.salePrice}]] 원</strong>
+                 </div>
+               </div>
+ 
+               </div>
+            
+            
+        <!-- 페이지 나누기 -->
+ 
+             <div class="row">
+               <div class="col-md-12 text-center">
+                 <div class="site-block-27">
+                   <ul>
+                     <li><a href="#">&lt;</a></li>
+                     <li class="active"><span>1</span></li>
+                     <li><a href="#">2</a></li>
+                     <li><a href="#">3</a></li>
+                     <li><a href="#">4</a></li>
+                     <li><a href="#">5</a></li>
+                     <li><a href="#">&gt;</a></li>
+                   </ul>
+                 </div>
+               </div>
+             </div>
+           </div>
+ 
+ 
+ 
+ <!-- 우측 사이드 바  -->
+ 
+           <div class="col-md-3 order-2 mb-5 mb-md-0">
+           
+           <!-- (1) 카테고리 -->
+             <div class="border p-4 rounded mb-4">
+               <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
+               <ul class="list-unstyled mb-0">
+                 <li class="mb-1"><a href="man" class="d-flex"><span>Men</span> <span class="text-black ml-auto">(2,220)</span></a></li>
+                 <li class="mb-1"><a href="woman" class="d-flex"><span>Women</span> <span class="text-black ml-auto">(2,550)</span></a></li>
+                 <li class="mb-1"><a href="children" class="d-flex"><span>Children</span> <span class="text-black ml-auto">(2,124)</span></a></li>
+               </ul>
+             </div>
+ 
+          <!-- (2-1) 가격 필터 -->
+             <div class="border p-4 rounded mb-4">
+               <div class="mb-4">
+                 <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price</h3>
+                 <div id="slider-range" class="border-primary"></div>
+                 <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" disabled="" />
+               </div>
+ 
+            <!-- (2-2) 사이즈 필터 -->
+               <div class="mb-4">
+                 <h3 class="mb-3 h6 text-uppercase text-black d-block">Size</h3>
+                 <label for="s_sm" class="d-flex">
+                   <input type="checkbox" id="s_sm" class="mr-2 mt-1"> <span class="text-black">Small (2,319)</span>
+                 </label>
+                 <label for="s_md" class="d-flex">
+                   <input type="checkbox" id="s_md" class="mr-2 mt-1"> <span class="text-black">Medium (1,282)</span>
+                 </label>
+                 <label for="s_lg" class="d-flex">
+                   <input type="checkbox" id="s_lg" class="mr-2 mt-1"> <span class="text-black">Large (1,392)</span>
+                 </label>
+               </div>
+ 
+           <!-- (2-3) 컬러 필터 -->
+               <div class="mb-4">
+                 <h3 class="mb-3 h6 text-uppercase text-black d-block">Color</h3>
+                 <a href="#" class="d-flex color-item align-items-center" >
+                   <span class="bg-danger color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Red (2,429)</span>
+                 </a>
+                 <a href="#" class="d-flex color-item align-items-center" >
+                   <span class="bg-success color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Green (2,298)</span>
+                 </a>
+                 <a href="#" class="d-flex color-item align-items-center" >
+                   <span class="bg-info color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Blue (1,075)</span>
+                 </a>
+                 <a href="#" class="d-flex color-item align-items-center" >
+                   <span class="bg-primary color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Purple (1,075)</span>
+                 </a>
+               </div>
+ 
+             </div>
+           </div>
+         </div>
+ 
+       </div>
+     </div>
+ 
+ 
+ 
+ 
+ 
+ <!-- 디스커버리 항목, 남 여, 잡화 구분 -->
+     <div class="site-section">
+       <div class="container">
+         <div class="title-section mb-5">
+           <h2 class="text-uppercase"><span class="d-block">Discover</span> The Collections</h2>
+         </div>
+         <div class="row align-items-stretch">
+           <div class="col-lg-8">
+             <div class="product-item sm-height full-height bg-gray">
+               <a href="women" class="product-category">Women <span>25 items</span></a>
+               <img src="../../../images/model_4.png" alt="Image" class="img-fluid">
+             </div>
+           </div>
+           <div class="col-lg-4">
+             <div class="product-item sm-height bg-gray mb-4">
+               <a href="men" class="product-category">Men <span>25 items</span></a>
+               <img src="../../../images/model_5.png" alt="Image" class="img-fluid">
+             </div>
+ 
+             <div class="product-item sm-height bg-gray">
+               <a href="shoes" class="product-category">Shoes <span>25 items</span></a>
+               <img src="../../../images/model_6.png" alt="Image" class="img-fluid">
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+       <div th:replace="~{features/footer :: replFoot}"></div>
+    </div>
+       <div th:replace="~{shared/script/TempScript :: repscript}"></div>
+ </body>
+ </html>

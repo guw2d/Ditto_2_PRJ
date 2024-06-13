@@ -1,0 +1,199 @@
+<!--******************************************************************************
+	Ditto 회원가입 페이지
+
+	update : 2024-05-30
+	
+	관리자 : 김효정
+	
+  코딩 매뉴얼.
+	- 폼을 만들어서 회원 가임 하는 기능을 만들어주세요
+	- 멤버 테이블에 저장 하면 하게 만들어주세요
+ ******************************************************************************-->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=divice-width, initial-scale=1.0" >
+
+<title>Ditto</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
+	<link rel="stylesheet" href="../../../fonts/icomoon/style.css">
+	
+	<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../css/magnific-popup.css">
+	<link rel="stylesheet" href="../../../css/jquery-ui.css">
+	<link rel="stylesheet" href="../../../css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
+	
+	
+	<link rel="stylesheet" href="../../../css/aos.css">
+	
+	<link rel="stylesheet" href="../../../css/style.css">
+</head>
+<body>
+
+
+	<div class="site-wrap">
+		<div th:replace="~{features/top :: replTop}"></div>
+		    <!-- 상단 바, 밑 DIV 시작 (홈탭, 카트 탭-->
+    <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0"><a href="index">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">회원 가입</strong></div>
+        </div>
+      </div>
+    </div>
+	<!-- 상단 바, 밑 DIV 끝 -->
+	
+
+	
+	<!-- 바디  DIV 시작 -->
+    <div class="site-section">
+      <div class="container"> 
+  			
+
+
+  			<div class="card text-black" style="border-radius: 25px;">
+                    <div class="card-body p-md-5">
+                        <div class="row justify-content-center">
+                            <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">회원가입</p>
+                                
+                       
+                       
+								
+								
+                                <form action="/admin/joinProc" method="post" class="mx-1 mx-md-4" enctype="multipart/form-data">
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                        
+                                        
+                                        
+                                            <input type="text" id="loginId" name="loginId" class="form-control" placeholder="아이디를 입력해주세요." required="required"/>
+                                            <label class="form-label" for="loginId">Login ID</label>
+                                            
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                        
+                                        
+                                            <input type="password" id="loginPw" name="loginPw" class="form-control"placeholder="비밀번호를 입려해주세요." required="required"/>
+                                            <label class="form-label" for="loginPw">Password</label>
+                                            
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                        
+                                        
+                                            <input type="email" id="memberEmail" name="memberEmail" class="form-control" placeholder='"@" 를 포함한 이메일을 입력해주세요.'required="required"/>
+                                            <label class="form-label" for="memberEmail">Email</label>
+                                            
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    
+                                    
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="text" id="memberNm" name="memberNm" class="form-control" placeholder="이름을 입력해주세요." required="required"/>
+                                            <label class="form-label" for="memberNm">Name</label>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="text" id="memberAddr" name="memberAddr" class="form-control" placeholder="주소를 입력해주세요." required="required"/>
+                                            <label class="form-label" for="memberAddr">주소</label>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="text" id="memberZipcd" name="memberZipcd" class="form-control" placeholder="우편번호를 입력해주세요." required="required"/>
+                                            <label class="form-label" for="memberZipcd">우편번호</label>
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="text" id="memberTel" name="memberTel" class="form-control" placeholder="전화번호를 입력해주세요." required="required"/>
+                                            <label class="form-label" for="memberTel">전화번호</label>
+                                        </div>
+                                    </div>
+                                    
+                                    
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <label class="form-label" for="memberDt">회원구분</label><br/>
+                                            
+                                            
+                                            <input type="radio" name="memberDt" id="memberDt" value="C">구매를 하시나요?<br/>
+                                            <input type="radio" name="memberDt" id="memberDt" value="S">판매를 하시나요?<br/>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                        <button type="submit" class="btn btn-primary btn-lg">회원가입</button>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                            <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                                <img src="../../../img/loginimg.png" class="img-fluid" alt="Sample image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+  			
+  			
+  			
+  			
+  			
+  			
+  			
+      </div>
+    </div>
+    <!-- 바디  DIV 끝 -->
+		<div th:replace="~{features/footer :: replFoot}"></div>
+	</div>
+		<div th:replace="~{shared/script/TempScript :: repscript}"></div>
+		
+		
+<!-- 회원가입 요청 시 에러 메세지 -->
+<script th:if="${joinProcAlert}">
+    alert("회원 가입에 실패하였습니다. 다시 시도해주세요.");
+</script>			
+		
+</body>
+</html>

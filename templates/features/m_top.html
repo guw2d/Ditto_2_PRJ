@@ -1,0 +1,115 @@
+<!--******************************************************************************
+	Ditto top 마스터 페이지
+
+	update : 2024-05-20
+	
+	관리자 : 박낙주
+	
+  코딩 매뉴얼.
+  - 네비게이션 바를 분리
+
+  
+ ******************************************************************************-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+<link rel="icon" href="../../../favicons/favicon.ico">
+
+</head>
+<body>
+				<!--
+					공통 상단 바 코드입니다! 
+					수정 시 모든 상단 바가 수정 되니 조심!
+				-->
+	<div th:fragment="replTop" class="site-navbar bg-white py-2">
+
+      <div class="search-wrap">
+        <div class="container">
+          <a href="searchList" class="search-close js-search-close"><span class="icon-close2"></span></a>
+          <form action="searchList" method="post">
+            <input type="text" class="form-control" placeholder="키워드를 검색하고 엔터를 누르세요...">
+          </form>  
+        </div>
+      </div>
+      
+		<!--  상단 메뉴 -->
+      <div class="container">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="logo">
+            <div class="site-logo">
+              <a href="main" class="js-logo-clone">Ditto 마스터</a>
+            </div>
+          </div>
+          
+          <div class="main-nav d-none d-lg-block">
+            <nav class="site-navigation text-right text-md-center" role="navigation">
+              <ul class="site-menu js-clone-nav d-none d-lg-block">
+                <li class="has-children active">
+                  <a href="main">회원 관리</a>
+                  <ul class="dropdown">
+                  <!-- 메뉴 바 -->
+                    <li><a href="memberList">고객 관리</a></li>
+                    <li><a href="#">셀러 관리</a></li>
+                    <li class="has-children">
+                      <a href="#">도매 관리</a>
+                      <ul class="dropdown">
+                        <li><a href="#">상품가져오기</a></li>
+                        <li><a href="#">판매금지 목록</a></li>
+                        <li><a href="#">상품 정산</a></li>
+                        
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                
+                 <li class="has-children active">
+                 <a href="">영업 관리</a><ul class="dropdown">
+       		   			<li><a href="#">영업 현황</a></li>
+       		   			<li><a href="#">외근 일정</a></li>
+       		   			<li><a href="#">개발 협업</a></li>
+       		   		</ul>
+                <li class="has-children active">
+                <a href="">매출 관리</a>
+                	<ul class="dropdown">
+                		<li><a href="#">매출 확인</a></li>
+       		   			<li><a href="#">회원사 확인</a></li>
+       		   			<li><a href="#">매출 예측</a></li>
+                	</ul>
+                </li>
+                <li class="has-children active">
+                	<a href="">서비스 지원</a>
+       		   		<ul class="dropdown">
+       		   			<li><a href="qnaList">셀러 문의</a></li>
+       		   			<li><a href="#">파트너사</a></li>
+       		   			<li><a href="#">개발 협업</a></li>
+                		<li><a href="#">배너 관리</a></li>
+       		   			<li><a href="#">광고 관리</a></li>
+       		   			<li><a href="#">블랙 리스트</a></li>
+       		   			<li><a href="notiList">공지사항 관리</a></li>
+       		   		</ul>
+       		    </li>
+       		    <li class="has-children active">
+       		    	<a href="">개발 관리</a>
+       		   		<ul class="dropdown">
+       		   			<li><a href="#">개발 문의</a></li>
+       		   			<li><a href="#">DB 관리</a></li>
+       		   			<li><a href="#">API 설정</a></li>
+       		   			<li><a href="#">개발 도구</a></li>
+       		   		</ul>
+       		    </li>
+       		    <li class="has-children active">
+       		    	<a href="">사이트</a>                	
+       		    	<ul class="dropdown">
+                		<li><a href="../admin">admin 페이지</a></li>
+       		   			<li><a href="../../index">index 페이지</a></li>
+       		   			<li><a th:href="@{/admin/logout}">로그 아웃</a></li>
+                	</ul>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>

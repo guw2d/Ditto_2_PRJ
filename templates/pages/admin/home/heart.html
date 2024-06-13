@@ -1,0 +1,47 @@
+<!--******************************************************************************
+	Ditto heart 페이지
+
+	update : 2024-05-20
+	
+	관리자 : 최희정
+	
+  코딩 매뉴얼.
+	- 찜 목록 페이지 
+	- 찜 한 목록의 상품을 리스트 로 출력해주세요
+	- 일단 기획인 없었는데 나중에 추가하죠
+	
+ ******************************************************************************-->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=divice-width, initial-scale=1.0" >
+
+<title>Ditto</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
+	<link rel="stylesheet" href="../../../fonts/icomoon/style.css">
+	
+	<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../css/magnific-popup.css">
+	<link rel="stylesheet" href="../../../css/jquery-ui.css">
+	<link rel="stylesheet" href="../../../css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
+	
+	
+	<link rel="stylesheet" href="../../../css/aos.css">
+	
+	<link rel="stylesheet" href="../../../css/style.css">
+	<link rel="icon" href="../../../icon/dittoIcon.ico">
+</head>
+<body>
+	<div class="site-wrap">
+		<div th:replace="~{features/top :: replTop}"></div>
+		
+		<div th:replace="~{features/footer :: replFoot}"></div>
+	</div>
+		<div th:replace="~{shared/script/TempScript :: repscript}"></div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!--******************************************************************************
+	Ditto 셀러 네비게이션바 페이지
+
+	update : 2024-05-20
+	
+	관리자 : 박낙주
+	
+  코딩 매뉴얼.
+  - 셀러 페이지
+  - 중복된 스타일 있으면 추가 예정임
+ ******************************************************************************-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+</head>
+<body>
+
+       <!--네비게이션 바 시작 -->
+            <nav th:fragment="navscript" class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+                <a href="main" class="navbar-brand d-flex d-lg-none me-4">
+                    <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
+                </a>
+                <a href="#" class="sidebar-toggler flex-shrink-0">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <form class="d-none d-md-flex ms-4">
+                    <input class="form-control border-0" type="search" placeholder="Search">
+                </form>
+                <div class="navbar-nav align-items-center ms-auto">
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-envelope me-lg-2"></i>
+                            <span class="d-none d-lg-inline-flex">문의글</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                            <a href="qnaList" class="dropdown-item">
+                                <div class="d-flex align-items-center">
+                                    <img class="rounded-circle" src="../../../img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                    <div class="ms-2">
+                                        <h6 class="fw-normal mb-0">내일 주문했는데 오늘왔어요</h6>
+                                        <small>15분 전</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="qnaList" class="dropdown-item">
+                                <div class="d-flex align-items-center">
+                                    <img class="rounded-circle" src="../../../img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                    <div class="ms-2">
+                                        <h6 class="fw-normal mb-0">소주 한짝 가격 얼마?</h6>
+                                        <small>20분전</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="qnaList" class="dropdown-item">
+                                <div class="d-flex align-items-center">
+                                    <img class="rounded-circle" src="../../../img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                    <div class="ms-2">
+                                        <h6 class="fw-normal mb-0">선배 마라탕 사주세요</h6>
+                                        <small>30분전</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="qnaList" class="dropdown-item text-center">전체 보기</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-bell me-lg-2"></i>
+                            <span class="d-none d-lg-inline-flex">알람</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">소나타 주문 있습니다. </h6>
+                                <small>15분 전</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">혜원 자켓 있습니다.</h6>
+                                <small>17분 전</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">처음처럼 30개 주문 하였습니다.</h6>
+                                <small>1일 전</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item text-center">전체 보기</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <img class="rounded-circle me-lg-2" src="../../../img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                            <span class="d-none d-lg-inline-flex">제이슨</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                            <a href="../admin/shop" class="dropdown-item">마이 쇼핑몰 가기</a>
+                            <a href="../admin/main" class="dropdown-item">쇼핑몰 가기</a>
+                            <a th:href="@{/admin/logout}" class="dropdown-item">로그아웃</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- 네비게이션바 끝-->
+       
+</body>
+</html>

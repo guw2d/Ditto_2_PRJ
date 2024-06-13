@@ -1,0 +1,113 @@
+<!--******************************************************************************
+	Ditto 새로운 페이지
+
+	update : 2024-05-20
+	
+	관리자 : 전체
+	
+  코딩 매뉴얼.
+  -  
+  
+ ******************************************************************************-->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=divice-width, initial-scale=1.0" >
+
+<title>Ditto 마스터</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
+	<link rel="stylesheet" href="../../../fonts/icomoon/style.css">
+	
+	<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../css/magnific-popup.css">
+	<link rel="stylesheet" href="../../../css/jquery-ui.css">
+	<link rel="stylesheet" href="../../../css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
+	
+	
+	<link rel="stylesheet" href="../../../css/aos.css">
+	
+	<link rel="stylesheet" href="../../../css/style.css">
+	<link rel="icon" href="../../../icon/dittoMIcon.ico">
+</head>
+<body>
+	<div class="site-wrap">
+		<div th:replace="~{features/m_top :: replTop}"></div>
+		      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h2 class="h3 mb-3 text-black">답변 하기</h2>
+          </div>
+          <div class="col-md-7">
+
+            <form th:action="@{qnamodi}" th:method="post">
+              
+              <div class="p-3 p-lg-5 border">
+
+                <div class="form-group row">
+                  <div class="col-md-12">
+                 	<input type="hidden" class="form-control"  th:value="답변완료" id="mQnaStatus" name="mQnaStatus">
+                 	<input type="hidden" class="form-control"  th:value="${dto.mQnaNo}" id="mQnaNo" name="mQnaNo">
+                 	<input type="hidden" class="form-control"  value="${dto.loginId}" id="loginId" name="loginId">
+                    <label for="c_subject" class="text-black">제목<span class="text-danger">*</span></label>
+  
+                    <input type="text" class="form-control" id="mQnaTitle" th:value="${dto.mQnaTitle}" name="mQnaTitle">
+                  
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-12">
+                    <label for="c_message" class="text-black">문의내용<span class="text-danger">*</span></label>
+                    <textarea name="mQnaContent"  id="mQnaContent" cols="30" rows="7" class="form-control">[[${dto.mQnaContent}]]</textarea>
+                  </div>
+                </div>
+                
+
+                 <div class="form-group row">
+                  <div class="col-md-12">
+                    <label for="c_message" class="text-black">답변내용<span class="text-danger">*</span></label>
+                    <textarea name="mQnaAnswer"  id="mQnaAnswer" cols="30" rows="7" class="form-control">[[${dto.mQnaAnswer}]]</textarea>
+                  </div>
+                </div>
+                
+               <div class="form-group row">
+
+                </div>
+                
+                
+                <div class="form-group row">
+                  <div class="col-lg-12">
+                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="답변하기">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-5 ml-auto">
+            <h2>답변 메뉴얼</h2>
+            <div class="p-4 border mb-3">
+              <span class="d-block text-primary h6 text-uppercase">비트코인 시세는</span>
+              <p class="mb-0">비트코인 $68K 아래 하락</p>
+            </div>
+            <div class="p-4 border mb-3">
+              <span class="d-block text-primary h6 text-uppercase">London</span>
+              <p class="mb-0">무슨 내용을 넣을까?</p>
+            </div>
+            <div class="p-4 border mb-3">
+              <span class="d-block text-primary h6 text-uppercase">Canada</span>
+              <p class="mb-0">무슨 내용을 넣을까?</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+		
+	</div>
+		<div th:replace="~{shared/script/TempScript :: repscript}"></div>
+</body>
+</html>

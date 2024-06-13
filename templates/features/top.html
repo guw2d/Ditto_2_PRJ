@@ -1,0 +1,118 @@
+<!--******************************************************************************
+	Ditto top페이지
+
+	update : 2024-05-30
+	
+	관리자 : 김효정
+	
+  코딩 매뉴얼.
+  - 네비게이션 바를 분리
+  - 로그인 정보를 기반으로 사용자가 관리자인지 셀러인지 확인하는 기능을 구현
+  - ex: 로그인 되면 "xxx고객님"으로 표시 셀러로 로그인하면 색상이 변경되도록 표시
+  - 전체 카테고리는 json을 이용해서 카테고리 정보를 넣어주세요 안되면 하드코딩 해주세요
+  - club를 참고 해주세요
+  
+ ******************************************************************************-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+</head>
+<body>
+				<!--
+					공통 상단 바 코드입니다! 
+					수정 시 모든 상단 바가 수정 되니 조심!
+				-->
+	<div th:fragment="replTop" class="site-navbar bg-white py-2">
+
+      <div class="search-wrap">
+        <div class="container">
+          <a href="searchList" class="search-close js-search-close"><span class="icon-close2"></span></a>
+          <form action="searchList" method="get">
+            <input type="text" class="form-control" placeholder="키워드를 검색하고 엔터를 누르세요...">
+          </form>  
+        </div>
+      </div>
+      
+		<!--  상단 메뉴 -->
+      <div class="container">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="logo">
+            <div class="site-logo">
+              <a href="main" class="js-logo-clone">Ditto</a>
+            </div>
+          </div>
+          
+          <div class="main-nav d-none d-lg-block">
+            <nav class="site-navigation text-right text-md-center" role="navigation">
+              <ul class="site-menu js-clone-nav d-none d-lg-block">
+                <li class="has-children active">
+                  <a href="main">전체 카테고리</a>
+                  <ul class="dropdown">
+                  
+                  <!-- 메뉴 바 -->
+                    <li><a href="man">남 성</a></li>
+                    <li><a href="women">여 성</a></li>
+                    <li class="has-children">
+                      <a href="children">유 아</a>
+                      <!-- <ul class="dropdown">
+                        <li><a href="#">장 갑</a></li>
+                        <li><a href="#">양 말 </a></li>
+                        <li><a href="#">신 발</a></li>
+                        
+                      </ul> -->
+                    </li>
+                  </ul>
+                </li>
+                
+                <li><a href="pordList">전체 상품</a></li>
+       
+       			<!-- 옷 종류 바 -->
+                <li><a href="newpord">신규 상픔</a></li>             
+       		    <li><a href="best">베스트</a></li>
+                <li><a href="qnaList">문의 답변</a></li>
+       		    <li><a href="notiList">공지사항</a></li>
+                
+                
+              </ul>
+            </nav>
+          </div>
+         
+ 		  <!-- 우측 상단 아이콘 -->        
+          <div class="icons">
+          
+          
+          
+          
+          	<!-- 검색 -->
+            <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
+            
+            <!-- 찜 -->
+            <a href="heart" class="icons-btn d-inline-block"><span class="icon-heart-o"></span></a>
+            
+            <!-- 마이페이지 -->
+            <a sec:authorize="isAnonymous()" th:href="@{/admin/signin}" class="icons-btn d-inline-block"><span class="icon-user-circle-o"></span></a>
+            <a sec:authorize="isAuthenticated()" href="myPage" class="icons-btn d-inline-block"><span class="icon-user-circle-o"></span></a>
+            
+            <!-- 로그인 -->
+         	<!--    <a href="signin" class="icons-btn d-inline-block"><span class="icon-sign-in"></span></a> -->
+            
+            <!-- 장바구니 -->
+            <a  sec:authorize="isAnonymous()" th:href="@{/admin/signin}"   class="icons-btn d-inline-block bag">
+              <span class="icon-shopping-bag"></span>
+            </a>
+            
+            <a sec:authorize="isAuthenticated()" href="cart" class="icons-btn d-inline-block bag">
+              <span class="icon-shopping-bag"></span>
+            </a>
+            <!-- 로그인 로그아웃 -->
+            <a class="nav-link icons-btn d-inline-block" sec:authorize="isAnonymous()" th:href="@{/admin/signin}">로그인</a> 
+            <a class="nav-link icons-btn d-inline-block" sec:authorize="isAuthenticated()" th:href="@{/admin/logout}">로그아웃</a>
+            
+            <!-- 메뉴 -->
+            <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span class="icon-menu"></span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>

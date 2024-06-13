@@ -1,0 +1,311 @@
+<!--******************************************************************************
+	Ditto scm 메인 페이지
+
+	update : 2024-05-20
+	
+	관리자 : 박낙주
+	
+  코딩 매뉴얼.
+  - scm 메인 페이지
+  - 매출이나 주문 정보 출력
+  
+ ******************************************************************************-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+<meta charset="utf-8">
+<title>scm 페이지</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="" name="keywords">
+<meta content="" name="description">
+<!-- jQuery first -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Waypoints after jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+
+<!-- 구글 웹 폰트-->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- 아이콘 글꼴 스타일시트 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!--  라이브러리 스타일시트 -->
+    <link href="../../../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../../../lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!--  맞춤 부트스트랩 스타일시트  -->
+    <link href="../../../css2/bootstrap.min.css" rel="stylesheet">
+
+    <!-- 템플릿 스타일 시트-->
+    <link href="../../../css2/style.css" rel="stylesheet">
+    
+</head>
+<body>
+<div class="container-xxl position-relative bg-white d-flex p-0">
+<!-- 텤프릿 스타일시드 -->
+
+        <!-- 스피너 끝 -->
+
+       <div th:replace="~{features/sellerSidebar :: sellerTop}"></div>
+        
+
+       <!-- 콘테츠 시작-->
+       <div class="content">
+       <div th:replace="~{features/sellerNavbar :: navscript}"></div>
+       
+       <!-- Sale & Revenue Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-line fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">오늘 매출</p>
+                                <h6 class="mb-0">260,000원</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">이번달 매출</p>
+                                <h6 class="mb-0">28,500,580원</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-area fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">주문 수</p>
+                                <h6 class="mb-0">4개</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">총 수익</p>
+                                <h6 class="mb-0">30,480만원</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Sale & Revenue End -->
+
+
+            <!-- Sales Chart Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light text-center rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">판매 그래프</h6>
+                                <a href="">전체 보기</a>
+                            </div>
+                            <canvas id="worldwide-sales"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light text-center rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">조회수</h6>
+                                <a href="">전체 보기</a>
+                            </div>
+                            <canvas id="salse-revenue"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Sales Chart End -->
+
+
+
+            <!-- Widgets Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-md-6 col-xl-4">
+                        <div class="h-100 bg-light rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <h6 class="mb-0">문의 글</h6>
+                                <a href="qnaList">전체 보기</a>
+                            </div>
+                            
+                            <div class="d-flex align-items-center border-bottom py-3" th:each="dto, iterStat : ${resultq}" th:if="${iterStat.index &lt; 4}">
+                                <img class="rounded-circle flex-shrink-0" src="../../../img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-0">[[${dto.loginId}]]</h6>
+                                        <small>15분 전</small>
+                                    </div>
+                                    <span>[[${dto.inquiryTitle}]]...</span>
+                                </div>
+                            </div>
+                         
+                            
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-xl-4">
+                        <div class="h-100 bg-light rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">일정</h6>
+                                <a href="orderList">전체보기</a>
+                            </div>
+                            <div id="calender"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-xl-4">
+                        <div class="h-100 bg-light rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">알림</h6>
+                                <a href="pordList">전체 보기</a>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <input class="form-control bg-transparent" type="text" placeholder="Enter task">
+                                <button type="button" class="btn btn-primary ms-2">검색</button>
+                            </div>
+                            <div class="d-flex align-items-center border-bottom py-2">
+                                <input class="form-check-input m-0" type="checkbox">
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <span>새로운 상품 입니다...</span>
+                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center border-bottom py-2">
+                                <input class="form-check-input m-0" type="checkbox">
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <span>새로운 상품 입니다...</span>
+                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center border-bottom py-2">
+                                <input class="form-check-input m-0" type="checkbox" checked>
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <span><del>새로운 상품 입니다...</del></span>
+                                        <button class="btn btn-sm text-primary"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center border-bottom py-2">
+                                <input class="form-check-input m-0" type="checkbox">
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <span>새로운 상품 입니다...</span>
+                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center pt-2">
+                                <input class="form-check-input m-0" type="checkbox">
+                                <div class="w-100 ms-3">
+                                    <div class="d-flex w-100 align-items-center justify-content-between">
+                                        <span>새로운 상품 입니다...</span>
+                                        <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Widgets End -->
+
+
+            <!-- Footer Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-light rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center text-sm-start">
+                            &copy; <a href="#">Your Site Name</a>, All Right Reserved. 
+                        </div>
+                        <div class="col-12 col-sm-6 text-center text-sm-end">
+                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                            Designed By <a href="https://htmlcodex.com">HTML Codex</a>
+                        </br>
+                        Distributed By <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                     <!-- Footer End -->
+           <div th:replace="~{shared/script/sellerScript :: repscript}"></div>
+       </div>
+</div>
+
+<script type="text/javascript">
+(function ($) {
+	   // Worldwide Sales Chart
+	    var ctx1 = $("#worldwide-sales").get(0).getContext("2d");
+	    var myChart1 = new Chart(ctx1, {
+	        type: "bar",
+	        data: {
+	            labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
+	            datasets: [{
+	                    label: "여성복",
+	                    data: [15, 30, 55, 65, 60, 80, 95],
+	                    backgroundColor: "rgba(0, 156, 255, .7)"
+	                },
+	                {
+	                    label: "남성복",
+	                    data: [8, 35, 40, 60, 70, 55, 75],
+	                    backgroundColor: "rgba(0, 156, 255, .5)"
+	                },
+	                {
+	                    label: "유아복",
+	                    data: [12, 25, 45, 55, 65, 70, 60],
+	                    backgroundColor: "rgba(0, 156, 255, .3)"
+	                }
+	            ]
+	            },
+	        options: {
+	            responsive: true
+	        }
+	    });
+
+
+	    // Salse & Revenue Chart
+	    var ctx2 = $("#salse-revenue").get(0).getContext("2d");
+	    var myChart2 = new Chart(ctx2, {
+	        type: "line",
+	        data: {
+	            labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
+	            datasets: [{
+	                    label: "여성",
+	                    data: [15, 30, 55, 45, 70, 65, 85],
+	                    backgroundColor: "rgba(0, 156, 255, .5)",
+	                    fill: true
+	                },
+	                {
+	                    label: "남성",
+	                    data: [99, 135, 170, 130, 190, 180, 270],
+	                    backgroundColor: "rgba(0, 156, 255, .3)",
+	                    fill: true
+	                }
+	            ]
+	            },
+	        options: {
+	            responsive: true
+	        }
+	    });
+	    
+	
+	})(jQuery);
+
+
+
+</script>
+</body>
+</html>

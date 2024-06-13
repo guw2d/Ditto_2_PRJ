@@ -1,0 +1,357 @@
+<!--******************************************************************************
+	Ditto 상품 상세페이지 페이지
+
+	update : 2024-05-20
+	
+	관리자 : 김희정
+	
+  코딩 매뉴얼.
+	- 상품 상세페이지으로 보여주는 기능을 만들어주세요
+	- 상품을 장바구니에 넣는 기능을 구현해주세요
+	- 파리미터를 받아와서 정보를 출력
+
+ ******************************************************************************-->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=divice-width, initial-scale=1.0" >
+
+<title>Ditto</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
+	<link rel="stylesheet" href="../../../fonts/icomoon/style.css">
+	
+	<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../css/magnific-popup.css">
+	<link rel="stylesheet" href="../../../css/jquery-ui.css">
+	<link rel="stylesheet" href="../../../css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
+	
+	
+	<link rel="stylesheet" href="../../../css/aos.css">
+	
+	<link rel="stylesheet" href="../../../css/style.css">
+	<script>
+	function p(i){
+		let v = parseInt(document.getElementById('updown').value)
+		window.location.href = "addcart?prodId=" + i + "&cartCount=" +  v
+	}
+	
+	</script>
+</head>
+<body>
+	<div class="site-wrap">
+		<div th:replace="~{features/top :: replTop}"></div>
+		   <!-- 상단 바 밑 경로 바 -->
+
+    <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0"><a href="main">Home</a> <span class="mx-2 mb-0">/</span> <a href="shop">Shop</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Gray Shoe</strong></div>
+        </div>
+      </div>
+    </div>  
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+        
+        <form action="/admin/shopMax" method="get" id="shopMax"></form>
+        
+          <div class="col-md-6">
+            <div class="item-entry">
+              <a href="#" class="product-item md-height bg-gray d-block">
+               <img th:src="|../../../ditto/2024/${dto.pathUrl}|"  alt="Image" class="img-fluid">
+              </a>
+              
+            </div>
+
+          </div>
+          
+ 
+          <!-- 상품 상세 설명 -->
+          <div class="col-md-6">
+            <h2 class="text-black">[[${dto.prodNm}]]</h2>
+            <p>[[${dto.ctgCd}]]</p>
+            <p class="mb-4">[[${dto.prodNm}]]</p>
+            <p><strong class="text-primary h4">[[${dto.salePrice}]] 원</strong></p>
+            <input type="hidden" th:value="@{${dto.prodId}}">
+
+
+           <!-- 선택 옵션 -->
+            <div class="mb-1 d-flex">
+              <label for="option-sm" class="d-flex mr-3 mb-3">
+                <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-sm" name="shop-sizes"></span> <span class="d-inline-block text-black">Small</span>
+              </label>
+              <label for="option-md" class="d-flex mr-3 mb-3">
+                <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-md" name="shop-sizes"></span> <span class="d-inline-block text-black">Medium</span>
+              </label>
+              <label for="option-lg" class="d-flex mr-3 mb-3">
+                <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-lg" name="shop-sizes"></span> <span class="d-inline-block text-black">Large</span>
+              </label>
+              <label for="option-xl" class="d-flex mr-3 mb-3">
+                <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-xl" name="shop-sizes"></span> <span class="d-inline-block text-black"> Extra Large</span>
+              </label>
+            </div>
+           
+           
+           
+           
+           <!-- 상품 갯수 추가 기능 -->
+           
+            <div class="mb-5">
+              <div class="input-group mb-3" style="max-width: 120px;">
+              <div class="input-group-prepend">
+                <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+              </div>
+              <input type="text" class="form-control text-center" id="updown" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+              <div class="input-group-append">
+                <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+              </div>
+            </div>
+            </div>
+            
+            
+            
+           <!-- 장바구니 담기 -->
+            <button th:onclick="p([[${dto.prodId}]])" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary" >장바구니 추가</button>
+        <!--     <p><a th:href="@{addcart(prodId=${dto.prodId})} " class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary" >장바구니 추가</a></p>-->
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+ <div class="site-section block-3 site-blocks-2">
+      <div class="container">
+      <div th:if="${dto.pathUrl}">
+              <div class="row justify-content-center">
+          <div class="col-md-7 site-section-heading text-center pt-4">
+            <h2>상세정보</h2>
+          </div>
+        </div>
+    	<span th:utext="${dto.dlvyAdd}"></span>
+		</div>
+      </div>
+      </div>
+
+
+
+<!-- 연관 상품 -->
+    <div class="site-section block-3 site-blocks-2">
+      <div class="container">
+      <table class="table">
+                <div class="col-md-7 site-section-heading text-left pt-4">
+            <h2>상품정보</h2>
+          </div>
+                                        <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">상품상세</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>배송비</td>
+                                        <td>[[${dto.salePrice}]]</td>
+                                    </tr>
+                                    <tr>
+                                    <th scope="row">2</th>
+                                        <td>반품 배송비</td>
+                                        <td>[[${dto.dlvyCost}]]</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>재고</td>
+                                        <td>[[${dto.realCnt}]]</td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">4</th>
+                                        <td>상품코드</td>
+                                        <td>[[${dto.prodId}]]</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+   	<div class="col-md-7 site-section-heading text-left pt-4">
+            <h2>상품 QR 코드</h2>
+            <img style="display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;" th:src="|https://api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=192.168.0.24:80/admin/shopMax?prodId=${dto.prodId}|">
+            
+          </div>
+      </div>
+    </div>
+ <script th:inline="javascript">
+        
+        
+         $(document).ready(function(e) {
+				//별점표기 lib 사용법..
+				/*
+					별점표기영역의 class find =>> starrr 의 생성자를 이용해서 별점을 표기함
+					생성자의 중요 속성은 2개임,
+					1.rating : value여기에 값을 주면 이값을 기준으로 별을 자동으로 표기함(점수만큼 별내부가 채워짐)
+					2.change : 콜백함수적용..이넘은 만약 값이 변경될때 채워지는 별의 값을 반영하는 함수임, 내부적으로 전달되는 파라미터로는
+					이벤트 객체와, 변경될 값을 담은 변수임.. 이 변수를 위에서 rating 의 값으로 매핑된 변수에 값을 매핑시키면 됨. value = value2;
+				*/
+			var mno = [[${dto.prodId}]];
+				
+			var grade = 0;
+			$('.starrr').starrr({
+				rating : grade,
+				change : (evt,value)=>{
+					if(value){
+						console.log("변경된 별점 : " + value);
+						grade = value;
+					}
+				}
+			});		
+			
+			
+			//리뷰등록 처리.
+			let reviewModal = $('.reviewModal');
+			let inputMid = $('input[name="mid"]');
+			let inputText = $('input[name="text"]');
+			
+			//이벤트처리
+			$('.addReviewBtn').click(()=>{
+				inputMid.val('');
+				inputText.val('');
+				
+				//save 버튼외 감추기.
+				$('.reviewModal, .modifyBtn').hide();
+				//$('.reviewSaveBtn').show();
+				
+				reviewModal.modal('show');
+			});	
+			
+			$('.reviewSaveBtn').click(()=>{
+				
+				let txt = inputText.val();
+				let mid = inputMid.val();
+				//리뷰내용, 별점, 작성자를 자바스크립트 객체로 생성후에 post 로전송함
+				let data = {mno:mno, grade:grade, text:inputText.val(), mid:inputMid.val()};
+				
+				//console.log("리뷰 데이터 : " + JSON.);
+				
+				$.ajax({
+					url : "/review/"+ mno,
+					type : "POST",
+					data :JSON.stringify(data),
+					contentType:"application/json; charset=UTF-8",
+					dataType:"text",
+					success:function(result){
+						console.log("서버 리턴 데이터 : " + result);
+						
+						//리로드
+						self.location.reload();
+					}
+					
+				});//end of ajax	
+				
+				reviewModal.modal('hide');
+			})		
+			
+			//reviewList
+			//페이지가 로드되면, 영화에 해당하는 댓글을 미리 로드만(load 와 View 는 틀림) 시킵니다.
+			function getMovieReviews(){
+				//날짜값 셋업 함수 정의.
+				function formatTime(str){
+					
+					let date = new Date(str);
+					
+					return date.getFullYear() + '/' + (date.getMonth() + 1) + '/' 
+					+ date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes(); 
+				}
+				
+				
+				//리뷰를 get 하도록 서버에 ajax 요청을 보냅니다.
+				//Jquery 의 함수중에, 서버에 ajax 으로 data 만 get 할때 쓰는애가 있는데,
+				//이름이 getJSON() 임...파라미터로는 요청 path, 그리고 데이터 get 후 처리 콜백임..
+				$.getJSON("/review/" + mno + "/all",(reJsonArr)=>{
+					let str = "";
+					
+					$.each(reJsonArr,(index, review)=>{
+						console.log("리뷰들 --> ", review);
+						
+						str += ' <div class="card-body"';
+						str += ' data-rid="'+ review.reviewNum +'"'; 
+						str += ' data-mid="'+ review.mid +'">';
+						str += ' <b>' + review.reviewNum +'</b>';
+	                    str += '    <h5 class="card-title">'+review.text+' <span>' + review.grade + '</span></h5>';
+	                    str += '    <h6 class="card-subtitle mb-2 text-muted">'+review.nickName+'</h6>';
+	                    str += '    <p class="card-text">'+ formatTime(review.regDate) +'</p>';
+	                    str += '    </div>';
+					});//end of for..
+					
+					$(".reviewList").html(str);
+				});//end of getJSON
+				
+			}//end of getReviews;
+			
+			getMovieReviews();//내부적으로 리뷰 로드를 위한 함수 호출.
+			
+			
+			//리뷰리스트에 있는 각 리뷰에 이벤트를 걸어서, 수정 or 삭제 에 대한 모달을 생성합니다.
+			let reviewNum ="";
+			
+			$('.reviewList').on('click','.card-body',(evt)=>{
+				console.log("리스크 클릭 grade --> " + grade);
+				//수정 or 삭제를 하겠다는 의미..따라서 모달을 띄우되, save 만 hide 시킴..
+				$('.reviewSaveBtn').hide();
+				
+				console.log($(evt.currentTarget).attr('data-rid'));
+				//let doc = $(this);
+				
+				//console.log("선택된 리뷰 번호 ", evt.target.data('reviewNum'));
+				
+				
+				
+				reviewNum = $(evt.currentTarget).attr('data-rid');
+				inputMid.val($(evt.currentTarget).attr('data-mid'));
+				inputText.val($(evt.currentTarget).find('.card-title').clone().children().remove().end().text());
+				
+				grade = $(evt.currentTarget).find('.card-title span').html();
+				//console.log("카드 --> ",$(evt.currentTarget).find('.card-title span'));
+				
+				//console.log("그레이드 --> ",grade);
+				$('.starrr a:nth-child(' + grade +')').trigger('click');
+				//console.log($('.starrr'));
+				$('.reviewModal, .modifyBtn').show();
+				
+			});	
+			
+			
+			//수정 작업처리.
+			$('.modifyBtn').on('click',()=>{
+				let data = {reviewNum:reviewNum, mno:mno, mid:inputMid.val(), text:inputText.val(), grade:grade};
+				reviewModal.modal('show');
+				console.log("수정 데이터 : ", data);
+				
+				$.ajax({
+					url:'/review/'+mno+'/'+reviewNum,
+					type:"PUT",
+					data:JSON.stringify(data),
+					contentType:"application/json; charset=UTF-8",
+					dataType:"text",
+					success:(res)=>{
+						console.log("수정 요청 결과 : ", res);
+						self.location.reload();
+					}
+				});
+				reviewModal.modal('hide');
+			});				
+				//$('.reviewModal').modal('show');
+            });
+        </script>
+		<div th:replace="~{features/footer :: replFoot}"></div>
+	</div>
+		<div th:replace="~{shared/script/TempScript :: repscript}"></div>
+		
+</body>
+
+</html>

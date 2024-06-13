@@ -1,0 +1,293 @@
+<!--******************************************************************************
+	Ditto  주문 성공 페이지
+
+	update : 2024-05-20
+	
+	관리자 : 박낙주
+	
+  코딩 매뉴얼.
+	- 메인 페이지 나중에 수정할것임
+	
+ ******************************************************************************-->
+
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=divice-width, initial-scale=1.0" >
+
+<title>Ditto</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
+	<link rel="stylesheet" href="../../../fonts/icomoon/style.css">
+	
+	<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../css/magnific-popup.css">
+	<link rel="stylesheet" href="../../../css/jquery-ui.css">
+	<link rel="stylesheet" href="../../../css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
+	
+	
+	<link rel="stylesheet" href="../../../css/aos.css">
+	
+	<link rel="stylesheet" href="../../../css/style.css">
+	<link rel="icon" href="../../../icon/dittoIcon.ico">
+</head>
+<body>
+	<div class="site-wrap">
+		<div th:replace="~{features/top :: replTop}"></div>
+		<!-- main page -->
+    <div class="site-blocks-cover" data-aos="fade">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 ml-auto order-md-2 align-self-start">
+            <div class="site-block-cover-content">
+            <h2 class="sub-title">#NEW 여름 컬렉션 2024</h2>
+            <h1>제이슨 추천 상품</h1>
+            <p><a href="shop" class="btn btn-black rounded-0">쇼핑몰 바로가기</a></p>
+            </div>
+          </div>
+          <div class="col-md-6 order-1 align-self-end">
+            <img src="../../../images/model_3.png" alt="Image" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+<!--  중간 메뉴  Discover-->
+    <div class="site-section">
+      <div class="container">
+        <div class="title-section mb-5">
+          <h2 class="text-uppercase"><span class="d-block">바로 등록된</span> 신규 상품</h2>
+        </div>
+        <div class="row align-items-stretch">
+          
+          <!-- Women -->
+          <div class="col-lg-8">
+            <div class="product-item sm-height full-height bg-gray">
+              <a href="women" class="product-category">여성 <span>25 items</span></a>
+              <img src="../../../images/model_4.png" alt="Image" class="img-fluid">
+            </div>
+          </div>
+          
+          <!-- Man -->
+          <div class="col-lg-4">
+            <div class="product-item sm-height bg-gray mb-4">
+              <a href="man" class="product-category">남성 <span>25 items</span></a>
+              <img src="../../../images/model_5.png" alt="Image" class="img-fluid">
+            </div>
+
+			<!-- 신발 -->
+            <div class="product-item sm-height bg-gray">
+              <a href="shoes" class="product-category">신발 <span>25 items</span></a>
+              <img src="../../../images/model_6.png" alt="Image" class="img-fluid">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- 중간 메뉴  Popular Product -->
+    
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="title-section mb-5 col-12">
+            <h2 class="text-uppercase">베스트 상품</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-6 item-entry mb-4">
+            <a href="shopMax" class="product-item md-height bg-gray d-block">
+              <img src="../../../images/prod_2.png" alt="Image" class="img-fluid">
+            </a>
+            <h2 class="item-title"><a href="shopMax">낙주 신발</a></h2>
+            <strong class="item-price">2000원</strong>
+          </div>
+          <div class="col-lg-4 col-md-6 item-entry mb-4">
+            <a href="shopMax" class="product-item md-height bg-gray d-block">
+              <img src="../../../images/prod_3.png" alt="Image" class="img-fluid">
+            </a>
+            <h2 class="item-title"><a href="shopMax">효정 힐</a></h2>
+            <strong class="item-price"><del>4600원</del> 2800원</strong>
+          </div>
+
+          <div class="col-lg-4 col-md-6 item-entry mb-4">
+            <a href="shopMax" class="product-item md-height bg-gray d-block">
+              <img src="../../../images/model_5.png" alt="Image" class="img-fluid">
+            </a>
+            <h2 class="item-title"><a href="shopMax">혜원 자켓</a></h2>
+            <strong class="item-price"><del>4600원</del> 2800원</strong>
+
+            <div class="star-rating">
+              <span class="icon-star2 text-warning"></span>
+              <span class="icon-star2 text-warning"></span>
+              <span class="icon-star2 text-warning"></span>
+              <span class="icon-star2 text-warning"></span>
+              <span class="icon-star2 text-warning"></span>
+            </div>
+
+          </div>
+          <div class="col-lg-4 col-md-6 item-entry mb-4">
+            <a href="#" class="product-item md-height bg-gray d-block">
+              <img src="../../../images/prod_1.png" alt="Image" class="img-fluid">
+            </a>
+            <h2 class="item-title"><a href="#">두리 가방</a></h2>
+            <strong class="item-price"><del>4600원</del> 2800원</strong>
+            <div class="star-rating">
+              <span class="icon-star2 text-warning"></span>
+              <span class="icon-star2 text-warning"></span>
+              <span class="icon-star2 text-warning"></span>
+              <span class="icon-star2 text-warning"></span>
+              <span class="icon-star2 text-warning"></span>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 item-entry mb-4">
+            <a href="shopMax" class="product-item md-height bg-gray d-block">
+              <img src="../../../images/model_1.png" alt="Image" class="img-fluid">
+            </a>
+            <h2 class="item-title"><a href="shopMax">희정 옷</a></h2>
+            <strong class="item-price"><del>4600원</del>2800원</strong>
+          </div>
+          <div class="col-lg-4 col-md-6 item-entry mb-4">
+            <a href="#" class="product-item md-height bg-gray d-block">
+              <img src="../../../images/model_7.png" alt="Image" class="img-fluid">
+            </a>
+            <h2 class="item-title"><a href="#">제이슨 정장</a></h2>
+            <strong class="item-price">5800원</strong>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    
+<!-- 중간메뉴 Most Rated -->
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="title-section text-center mb-5 col-12">
+            <h2 class="text-uppercase">리뷰가 좋은 상품</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 block-3">
+            <div class="nonloop-block-3 owl-carousel">
+              <div class="item">
+                <div class="item-entry">
+                  <a href="#" class="product-item md-height bg-gray d-block">
+                    <img src="../../../images/model_1.png" alt="Image" class="img-fluid">
+                  </a>
+                  <h2 class="item-title"><a href="#">희정 옷</a></h2>
+                  <strong class="item-price"><del>4600원</del> 2800원</strong>
+                  <div class="star-rating">
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="item-entry">
+                  <a href="#" class="product-item md-height bg-gray d-block">
+                    <img src="../../../images/prod_3.png" alt="Image" class="img-fluid">
+                  </a>
+                  <h2 class="item-title"><a href="#">효정 힐</a></h2>
+                  <strong class="item-price"><del>4600원</del> 2800원</strong>
+
+                  <div class="star-rating">
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="item-entry">
+                  <a href="#" class="product-item md-height bg-gray d-block">
+                    <img src="../../../images/model_5.png" alt="Image" class="img-fluid">
+                  </a>
+                  <h2 class="item-title"><a href="#">혜원 자켓</a></h2>
+                  <strong class="item-price"><del>4600원</del> 2800원</strong>
+
+                  <div class="star-rating">
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                  </div>
+
+                </div>
+              </div>
+              <div class="item">
+                <div class="item-entry">
+                  <a href="#" class="product-item md-height bg-gray d-block">
+                    <img src="../../../images/prod_1.png" alt="Image" class="img-fluid">
+                  </a>
+                  <h2 class="item-title"><a href="#">두리 가방</a></h2>
+                  <strong class="item-price"><del>4600원</del> 2800원</strong>
+                  <div class="star-rating">
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="item-entry">
+                  <a href="#" class="product-item md-height bg-gray d-block">
+                    <img src="../../../images/model_7.png" alt="Image" class="img-fluid">
+                  </a>
+                  <h2 class="item-title"><a href="#">제이슨 정장</a></h2>
+                  <strong class="item-price">5800원</strong>
+                  <div class="star-rating">
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                    <span class="icon-star2 text-warning"></span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- 하단 메뉴 광고  New Summer Collection 2019-->
+
+    <div class="site-blocks-cover inner-page py-5" data-aos="fade">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 ml-auto order-md-2 align-self-start">
+            <div class="site-block-cover-content">
+            <h2 class="sub-title">#할인의 무료 배송 까지</h2>
+            <h1>신발 덕후는 주목</h1>
+            <p><a href="shop" class="btn btn-black rounded-0">쇼핑몰 바로가기</a></p>
+            </div>
+          </div>
+          <div class="col-md-6 order-1 align-self-end">
+            <img src="../../../images/model_6.png" alt="Image" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+		<div th:replace="~{features/footer :: replFoot}"></div>
+	</div>
+		<div th:replace="~{shared/script/TempScript :: repscript}"></div>
+</body>
+</html>

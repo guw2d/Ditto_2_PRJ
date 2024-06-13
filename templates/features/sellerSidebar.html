@@ -1,0 +1,97 @@
+<!--******************************************************************************
+	Ditto 사이드바 페이지
+
+	update : 2024-05-20
+	
+	관리자 : 박낙주
+	
+  코딩 매뉴얼.
+  - 셀러 페이지
+  - 중복된 스타일 있으면 추가 예정임
+ ******************************************************************************-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+</head>
+<body>
+ <!-- 사이드바 시작 -->
+       <div th:fragment="sellerTop" class="sidebar pe-4 pb-3">
+           <nav class="navbar bg-light navbar-light">
+               <a href="main" class="navbar-brand mx-4 mb-3">
+                   <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>제이슨 쇼핑몰</h3>
+               </a>
+               <div class="d-flex align-items-center ms-4 mb-4">
+                   <div class="position-relative">
+                       <img class="rounded-circle" src="../../../img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                       <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                   </div>
+                   <div class="ms-3">
+                       <h6 class="mb-0">제이슨</h6>
+                       <span>베스트 셀러</span>
+                   </div>
+               </div>
+               <div class="navbar-nav w-100">
+                   <a href="main" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>홈</a>
+                   <div class="nav-item dropdown">
+                       <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>방송하기</a>
+                       <div class="dropdown-menu bg-transparent border-0">
+                           <a href="liveStd" class="dropdown-item">방송 스튜디오</a>
+                           <a href="liveSet" class="dropdown-item">방송 설정</a>
+                           <a href="videoUp" class="dropdown-item">동영상 올리기</a>
+                       </div>
+                   </div>
+                  <div class="nav-item dropdown">
+                       <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-th me-2"></i>상품</a>
+                       <div class="dropdown-menu bg-transparent border-0">
+                       	   <a href="pordGet" class="dropdown-item">상품 가져오기</a>
+                           <a href="pordList" class="dropdown-item">상품 목록</a>
+                           <a href="pordReg" class="dropdown-item">상품 등록</a>
+                           <a href="pordMan" class="dropdown-item">상품 관리</a>
+                           <a href="pordStock" class="dropdown-item">재고 관리</a>
+                           <a href="pordExcel" class="dropdown-item">상품 엑셀 관리</a>
+                           <a href="pordRemoved" class="dropdown-item">상품 삭제 목록</a>
+                       </div>
+                   </div>
+                   <div class="nav-item dropdown">
+                       <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-keyboard me-2"></i>주문</a>
+                       <div class="dropdown-menu bg-transparent border-0">
+                           <a href="orderList" class="dropdown-item">주문 조회</a>
+                           <a href="order" class="dropdown-item">발주 처리</a>
+                           <a href="claims" class="dropdown-item">취소/교환/환불관리</a>
+                           <a href="cal" class="dropdown-item">정산 관리</a>
+                           <a href="deposit" class="dropdown-item">입금 관리</a>
+                       </div>
+                   </div>
+                   <div class="nav-item dropdown">
+                       <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-table me-2"></i>배송</a>
+                       <div class="dropdown-menu bg-transparent border-0">
+                           <a href="send" class="dropdown-item">발송 처리</a>
+                           <a href="blvySend" class="dropdown-item">배송 처리</a>
+                           <a href="blvyReady" class="dropdown-item">배송 준비중 관리</a>
+                           <a href="blvyProg" class="dropdown-item">배송 대기 관리</a>
+                           <a href="blvyComp" class="dropdown-item">배송 완료</a>
+                       </div>
+                   </div>
+                   <div class="nav-item dropdown">
+                       <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-chart-bar me-2"></i>고객</a>
+                       <div class="dropdown-menu bg-transparent border-0">
+                           <a href="qnaList" class="dropdown-item">문의 게시판</a>
+                           <a href="salesList" class="dropdown-item">매출 통계</a>
+                           <a href="noti" class="dropdown-item">공지 사항</a>
+                           <a href="subscription" class="dropdown-item">구독 관리</a>
+                       </div>
+                   </div>
+                   <div class="nav-item dropdown">
+                       <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-file-alt me-2"></i>설정</a>
+                       <div class="dropdown-menu bg-transparent border-0">
+                           <a href="suddio" class="dropdown-item">스튜디오 설정</a>
+                           <a href="design" class="dropdown-item">디자인</a>
+                           <a href="promotions" class="dropdown-item">프로모션</a>
+                           <a href="service" class="dropdown-item">부가 서비스</a>
+                       </div>
+                   </div>
+               </div>
+           </nav>
+       </div>
+</body>
+</html>

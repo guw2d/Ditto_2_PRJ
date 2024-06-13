@@ -1,0 +1,153 @@
+<!--******************************************************************************
+	Ditto scm 주문 조회 처리 페이지
+
+	update : 2024-05-20
+	
+	관리자 : 길혜원
+	
+  코딩 매뉴얼.
+  - 쇼핑몰 주문 조회처리를 할수 있는 페이지 
+  
+ ******************************************************************************-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+
+<head>
+<meta charset="utf-8">
+<title>scm 페이지</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="" name="keywords">
+<meta content="" name="description">
+<!-- 구글 웹 폰트-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- 아이콘 글꼴 스타일시트 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!--  라이브러리 스타일시트--> 
+    <link href="../../../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../../../lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!--  맞춤 부트스트랩 스타일시트-->
+    <link href="../../../css2/bootstrap.min.css" rel="stylesheet">
+
+    <!-- 템플릿 스타일 시트-->
+    <link href="../../../css2/style.css" rel="stylesheet">
+    <link rel="icon" href="../../../icon/dittoIcon.ico">
+</head>
+<body>
+<div class="container-xxl position-relative bg-white d-flex p-0">
+<!-- 텤프릿 스타일시드 -->
+
+        <!-- 스피너 끝 -->
+ 		<div class="content">
+    <div th:replace="~{features/sellerSidebar :: sellerTop}"></div>
+        
+       <div th:replace="~{shared/script/sellerScript :: repscript}"></div>
+       <!-- 콘테츠 시작-->
+     
+        
+         <div th:replace="~{features/sellerNavbar :: navscript}"></div>
+      
+      
+      
+
+      
+   
+		<!-- <div th:replace="~{features/m_top :: replTop}"></div>  -->
+    <div class="site-section">
+      <div class="container">
+        <div class="title-section mb-8">
+		<th:block th:fragment="content">
+		   <h1 class="mt-4">주문 조회</h1>
+		   <form action="orderList" method="get" id="searchForm">
+				<div class="input-group">
+					<input type="hidden" name="page" value="1">
+						<div class="input-group-prepend">
+							<select class="custom-select" name="type">
+								<option th:selected="${pageRequestDTO.type == null}">검색</option>
+								<option value="l" th:selected="${pageRequestDTO.type == 'l'}">회원아이디</option>
+								<option value="n" th:selected="${pageRequestDTO.type == 'n'}">상품명</option>
+								<option value="e" th:selected="${pageRequestDTO.type == 'e'}">주문상태</option>
+								<option value="ln" th:selected="${pageRequestDTO.type == 'ln'}">회원아이디 + 상품명</option>
+								<option value="lne" th:selected="${pageRequestDTO.type == 'lne'}">회원아이디 + 상품명 + 주문상태</option>
+								<option></option>
+							</select>
+						</div>
+						<input class="form-control" name="keyword" th:value="${pageRequestDTO.keyword}">
+						
+						<div class="input-group-prepend" id="button-addon4">
+							<button class="btn btn-outline-scondary bnt-search">Search</button>
+							<button class="btn btn-outline-scondary" type="reset">Clear</button>
+						</div>
+					</div>		
+				</form>
+		 <table class="table table-striped" style="text-align:center">
+            <thead>
+            <tr>
+                <th scope="col">회원아이디</th>
+                <th scope="col">상품명</th>
+                <th scope="col">주문수량</th>
+                <th scope="col">주문금액</th>
+                <th scope="col">주문 결재일</th>
+                <th scope="col">주문 처리상태</th>
+                <th scope="col">발송 확인</th>           
+            </tr>
+            </thead>
+            
+            
+            
+            
+         <tbody>
+		<tr th:each="dto : ${result.dtoList}" >
+			 <th scope="row">
+                        [[${dto.memberId}]]
+                </th>
+                <td> [[${dto.prodNm}]]</td> 
+                <td> [[${dto.orderQuantity}]]</td>
+                <td> [[${dto.orderPrice}]]</td>
+                <td> [[${dto.orderDate}]]</td>
+                <td> [[${dto.orderStatus}]]</td>
+                <td><button type="button" class="btn btn-outline-primary m-0"><a th:href="@{orderLis(orderNo=${dto.orderNo})}">발송</a></button></td>
+ 
+		</tr>
+		</table>
+		     
+		 </th:block>
+		         <ul class="pagination h-100 justify-content-center align-items-center">
+
+            <li class="page-item " th:if="${result.prev}">
+                <a class="page-link" th:href="@{orderList(page= ${result.start -1})}" tabindex="-1">이전</a>
+            </li>
+
+            <li th:class=" 'page-item ' + ${result.page == page?'active':''} " th:each="page: ${result.pageList}">
+                <a class="page-link" th:href="@{orderList(page = ${page})}">
+                    [[${page}]]
+                </a>
+            </li>
+
+            <li class="page-item" th:if="${result.next}">
+                <a class="page-link" th:href="@{orderList(page= ${result.end + 1} )}">다음</a>
+            </li>
+        </ul>
+		 </div>
+		 </div>
+		 </div>
+	</div>
+		
+		
+
+	</div>
+	 	<div th:replace="~{shared/script/TempScript :: repscript}"></div>	
+		
+
+       
+
+  
+       </div>
+</div>
+</body>
+</html>

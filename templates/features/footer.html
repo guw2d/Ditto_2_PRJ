@@ -1,0 +1,106 @@
+<!--******************************************************************************
+	Ditto footer페이지
+
+	update : 2024-05-20
+	
+	관리자 : 김효정
+	
+  코딩 매뉴얼.
+  - footer를 분리
+  - 아래 정보는 라이센스를 넣었습니다. 정보는 학원 위치를 넣었습니다.
+  - 프로모션 나중에 상품을 가져와서 상품페이지로 이동 하도록 수정 해주세요
+  
+ ******************************************************************************-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>  
+        <!--
+        	공통 풋터 코드입니다! 
+            수정 시 모든 상단 바가 수정 되니 조심!
+        -->
+        <footer th:fragment="replFoot" class="site-footer custom-border-top">
+            <div class="container">
+                <div class="row">
+                    
+                    <!-- PROMO DIV 시작 -->
+                    <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+                        <h3 class="footer-heading mb-4">프로모션</h3>
+                        <a href="#" class="block-6">
+                            <img src="../../../images/about_1.jpg" alt="Image placeholder" class="img-fluid rounded mb-4">
+                            <h3 class="font-weight-light  mb-0">올 여름 이상적인 셔츠 찾기</h3>
+                            <p>2024년 7월 15일~25일 프로모션</p>
+                        </a>
+                    </div>
+                    <!-- PROMO DIV 끝 -->
+                    
+                    <!-- QUICK LINKS DIV 시작 -->
+                    <div class="col-lg-5 ml-auto mb-5 mb-lg-0">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="footer-heading mb-4">바로가기</h3>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <ul class="list-unstyled">
+                                    <li><a href="../seller/main">온라인 판매</a></li>
+                                    <li><a href="../index">특징</a></li>
+                                    <li><a href="../master/main">장바구니</a></li>
+                                    <li><a href="#">매장문의</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <ul class="list-unstyled">
+                                    <li><a href="#">공지사항</a></li>
+                                    <li><a href="#">문의 답변</a></li>
+                                    <li><a href="#">사이트 개발 문의</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <ul class="list-unstyled">
+                                    <li><a href="../seller/main">셀러페이지(테스트)</a></li>
+                                    <li><a href="../index">인덱스페이지(테스트)</a></li>
+                                    <li><a href="../master/main">마스터페이지(테스트)</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- QUICK LINKS DIV 끝 -->
+
+                    <!-- CONTACT INFO 입력 DIV 시작 -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="block-5 mb-5">
+                            <h3 class="footer-heading mb-4">Contact Info</h3>
+                            <ul class="list-unstyled">
+                                <li class="address">08378 서울 구로구 디지털로34길 27 (구로동) 1106-7호</li>
+                                <li class="phone"><a href="tel://0269593647">+82 02-6959-3647</a></li>
+                                <li class="email">user123@ditto.com</li>
+                            </ul>
+                        </div>
+                        <!-- CONTACT INFO 입력 DIV 끝 -->
+                        
+                        <div class="block-7">
+                            <form action="#" method="post">
+                                <label for="email_subscribe" class="footer-heading">Subscribe</label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
+                                    <input type="submit" class="btn btn-sm btn-primary" value="검색">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt-5 mt-5 text-center">
+                    <div class="col-md-12">
+                        <p>
+                            Room 271106, Digital-ro 34-gil, Guro-gu, Seoul COPYRIGHT (C) &copy;<script>document.write(new Date().getFullYear());</script> majustory . ALL RIGHTS RESERVED. Ditto
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.min.js"></script>
+       
+    </body>
+</html>

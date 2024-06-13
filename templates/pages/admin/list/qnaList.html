@@ -1,0 +1,114 @@
+<!--******************************************************************************
+	Ditto qna 리스트 페이지
+
+	update : 2024-05-20
+	
+	관리자 : 길해원
+	
+  코딩 매뉴얼.
+  -  Q&A 리스트를 출력해주세요.
+  - 'Contact' 페이지로 이동할 수 있는 버튼을 만들어주세요.
+  
+ ******************************************************************************-->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=divice-width, initial-scale=1.0" >
+
+<title>Ditto</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
+	<link rel="stylesheet" href="../../../fonts/icomoon/style.css">
+	
+	<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../css/magnific-popup.css">
+	<link rel="stylesheet" href="../../../css/jquery-ui.css">
+	<link rel="stylesheet" href="../../../css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
+	
+	
+	<link rel="stylesheet" href="../../../css/aos.css">
+	
+	<link rel="stylesheet" href="../../../css/style.css">
+	<link rel="icon" href="../../../icon/dittoIcon.ico">
+	
+</head>
+<body>
+	<div class="site-wrap">
+		<div th:replace="~{features/top :: replTop}"></div>
+		<div class="site-section">
+      <div class="container">
+        <div class="title-section mb-5">
+		<th:block th:fragment="content">
+		   <h1 class="mt-4">문의 답변</h1>
+		   <button type="button" class="btn btn-outline-danger m-2" onclick="location.href='qnaReg';">문의하기</button>
+
+		 <table class="table table-striped" style="text-align:center">
+            <thead>
+            <tr>
+                <th scope="col">문의번호</th>
+                <th scope="col">문의제목</th>
+                <th scope="col">회원아이디</th>
+                <th scope="col">답변여부</th>
+            </tr>
+            </thead>
+         <tbody>
+		<tr th:each="dto : ${result.dtoList}" >
+			 <td>
+                        [[${dto.mQnaNo}]]
+                </td>
+                <td> <a th:href="@{qnamodi(mQnaNo=${dto.mQnaNo})}" > [[${dto.mQnaTitle}]]</a></td>
+                <td> [[${dto.loginId}]]</td>
+                <td> [[${dto.mQnaStatus}]]</td>
+		</tr>
+		</table>
+		     
+		 </th:block>
+		         <ul class="pagination h-100 justify-content-center align-items-center">
+
+            <li class="page-item " th:if="${result.prev}">
+                <a class="page-link" th:href="@{qnaList(page= ${result.start -1})}" tabindex="-1">이전</a>
+            </li>
+
+            <li th:class=" 'page-item ' + ${result.page == page?'active':''} " th:each="page: ${result.pageList}">
+                <a class="page-link" th:href="@{qnaList(page = ${page})}">
+                    [[${page}]]
+                </a>
+            </li>
+
+            <li class="page-item" th:if="${result.next}">
+                <a class="page-link" th:href="@{qnaList(page= ${result.end + 1} )}">다음</a>
+            </li>
+        </ul>
+        		   <form action="qnaList" method="get" id="searchForm">
+				<div class="input-group">
+					<input type="hidden" name="page" value="1">
+						<div class="input-group-prepend">
+							<select class="custom-select" name="type">
+								<option value="l" th:selected="${pageRequestDTO.type == 'l'}">회원명</option>
+								<option value="t" th:selected="${pageRequestDTO.type == 't'}">제목</option>
+							</select>
+						</div>
+						<input class="form-control" name="keyword" th:value="${pageRequestDTO.keyword}">
+						
+						<div class="input-group-prepend" id="button-addon4">
+							<button class="btn btn-outline-scondary bnt-search">Search</button>
+							<button class="btn btn-outline-scondary" type="reset">Clear</button>
+						</div>
+				</div>
+			
+			</form>
+		 </div>
+		 </div>
+		 </div>
+	</div>
+		<div th:replace="~{features/footer :: replFoot}"></div>
+		
+	</div>
+	
+		<div th:replace="~{shared/script/TempScript :: repscript}"></div>
+</body>
+</html>

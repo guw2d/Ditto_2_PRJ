@@ -1,0 +1,230 @@
+<!--******************************************************************************
+	Ditto index페이지
+
+	update : 2024-05-20
+	
+	관리자 : 전체
+	
+  코딩 매뉴얼.
+  - 인덱스 페이지는 프로젝트 소개하는 페이지로 만들 예정
+  - 팀 정보나 프로제트 내용을 넣을 기획임
+  - 영상은 시연 영상 넣고
+  - 프로젝트를 홍보하는 페이지라고 생각 하면 됨 
+ ******************************************************************************-->
+
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=divice-width, initial-scale=1.0" >
+
+<title>Ditto</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
+	<link rel="stylesheet" href="../../../fonts/icomoon/style.css">
+	
+	<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../css/magnific-popup.css">
+	<link rel="stylesheet" href="../../../css/jquery-ui.css">
+	<link rel="stylesheet" href="../../../css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
+	
+	
+	<link rel="stylesheet" href="../../../css/aos.css">
+	
+	<link rel="stylesheet" href="../../../css/style.css">
+</head>
+<body>
+	<div class="site-wrap">
+		<!-- 바디 내 이미지 영역 DIV 시작 -->
+	    <div class="site-blocks-cover inner-page" data-aos="fade">
+	      <div class="container">
+	        <div class="row">
+	          <div class="col-md-6 ml-auto order-md-2 align-self-start">
+	            <div class="site-block-cover-content">
+	            <h2 class="sub-title">#2024 스프링 부트로 구현한 쇼핑몰</h2>
+	            <h1>무재고 소자본&nbsp; &nbsp;위탁판매</h1>
+	            
+	            <!-- Shop Now 링크 ! -->
+	            <p><a href="admin/main" class="btn btn-black rounded-0">프로젝트 바로가기</a></p>
+	            </div>
+	          </div>
+	         <div class="col-md-6 order-1 align-self-end">
+	          
+	         <!-- 이미지 ! -->
+	        <img src="../../../images/model_7.png" alt="Image" class="img-fluid">
+	       </div>
+	     </div>
+	   </div>
+	 </div>
+	    <!-- 바디 내 이미지 영역 DIV 끝 -->
+
+
+	<!-- 바디 내 홈/About DIV 시작 -->
+    <div class="custom-border-bottom py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0"><a href="/admin/main">프로젝트 보기</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">프로젝트 소개</strong></div>
+        </div>
+      </div>
+    </div>
+    <!-- 바디 내 홈/About DIV 끝 -->
+    
+
+
+	<!-- 바디 내 Free Shipping, Free Returns, Customer Support DIV 시작 -->
+    <div class="site-section site-section-sm site-blocks-1 border-0" data-aos="fade">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="">
+            <div class="icon mr-4 align-self-start">
+              <span class="icon-truck"></span>
+            </div>
+            <div class="text">
+              <h2 class="text-uppercase">전 제품 무료 배송</h2>
+              <p>고객이 어떤 제품을 구매하든 상관없이 무료로 배송됩니다.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon mr-4 align-self-start">
+              <span class="icon-refresh2"></span>
+            </div>
+            <div class="text">
+              <h2 class="text-uppercase">무료 반품</h2>
+              <p>7일 이내에 구매한 상품 반품 무료 반품됩니다.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon mr-4 align-self-start">
+              <span class="icon-help"></span>
+            </div>
+            <div class="text">
+              <h2 class="text-uppercase">고객 지원</h2>
+              <p>전반적인 고객 경험을 향상시키기 위한 서비스입니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 바디 내 Free Shipping, Free Returns, Customer Support DIV 끝 -->
+
+
+
+	
+	<!-- 바디 내 영상 DIV 시작 -->
+    <div class="site-section custom-border-bottom" data-aos="fade">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-6">
+            <div class="block-16">
+              <figure>
+              
+              <!-- 영상 !!! -->
+                <img src="../../../images/blog_1.jpg" alt="Image placeholder" class="img-fluid rounded">
+                <a href="https://vimeo.com/channels/staffpicks/93951774" class="play-button popup-vimeo"><span class="icon-play"></span></a>
+
+              </figure>
+            </div>
+          </div>
+          <!-- 바디 내 영상 DIV 끝 -->
+          
+          
+          <div class="col-md-1"></div>
+          <div class="col-md-5">
+            
+            
+            <div class="site-section-heading pt-3 mb-4">
+            
+            <!-- 영상 밑, 소개글 !  -->
+              <h2 class="text-black">프로젝트의 기획</h2>
+            </div>
+            <p>현대 사회에서 빠르게 변화하는 속도와 짧은 시간 동안 발생하는 사건들을 강조 합니다.
+			특히 정보 기술과 인터넷의 발전으로 인해 소통과 정보가 신속하게 전파되고 소비되고 있습니다.
+			이는 기술의 발전과 사회적 요인들이 복합적으로 작용함에 따라 발생하는 현상
+			정보의 공유와 소통이 빠르게 이루어지며, 그에 따라 소비자들의 요구도 빠르게 변화합니다. 
+			특정 인물이나 콘텐츠의 제안에 따라 제품을 구매하는 디토소비는 과거의 모방소비와는 달리, 
+			자신과 비슷한 외형이나 취향을 가진 대상의 소비를 따라하는 것을 의미합니다. 
+			신의 취향이나 가치관과 유사한 인플루언서가 구매한 제품을 따라 사거나, 해당 분야의 전문가가 추천한 제품을 구매 플랫폼 입니다.</p>
+			            
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+	<!-- 영상 밑, The Team DIV 시작 -->
+    <div class="site-section custom-border-bottom" data-aos="fade">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 site-section-heading text-center pt-4">
+            <h2>프로젝트 팀</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-lg-3">
+  
+            <div class="block-38 text-center">
+              <div class="block-38-img">
+                <div class="block-38-header">
+                  <img src="../../../images/person_1.jpg" alt="Image placeholder" class="mb-4">
+                  <h3 class="block-38-heading h4">김 효정</h3>
+                  <p class="block-38-subheading">팀원</p>
+                </div>
+                <div class="block-38-body">
+                  <p>팀원으로서 백엔드에서는 회원 관리 시스템과 인증 시스템을 개발했고, 프론트엔드에서는 블록으로 태그를 나누어 프론트 단을 개발을 성공적으로 완료했습니다.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="block-38 text-center">
+              <div class="block-38-img">
+                <div class="block-38-header">
+                  <img src="../../../images/person_2.jpg" alt="Image placeholder" class="mb-4">
+                  <h3 class="block-38-heading h4">최 희정</h3>
+                  <p class="block-38-subheading">팀장</p>
+                </div>
+                <div class="block-38-body">
+                  <p>팀장으로서 팀원들과 협력하며 팀을 조율하여 프로젝트를 주도하고, 상품등록 및 수정 등 백엔드 개발을 성공적으로 완료했습니다. </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="block-38 text-center">
+              <div class="block-38-img">
+                <div class="block-38-header">
+                  <img src="../../../images/person_3.jpg" alt="Image placeholder" class="mb-4">
+                  <h3 class="block-38-heading h4">길혜원</h3>
+                  <p class="block-38-subheading">팀원</p>
+                </div>
+                <div class="block-38-body">
+                  <p>팀원으로서 주문 및 문의 답변 등의 백엔드를 개발하고, 외부 API를 해석하여 팀원들에게 설명하고 사용할 수 있게 만들었습니다. </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="block-38 text-center">
+              <div class="block-38-img">
+                <div class="block-38-header">
+                  <img src="../../../images/person_4.jpg" alt="Image placeholder" class="mb-4">
+                  <h3 class="block-38-heading h4">박낙주</h3>
+                  <p class="block-38-subheading">팀원</p>
+                </div>
+                <div class="block-38-body">
+                  <p>팀원으로서 전체 프로젝트를 기획하고, 전체적인 구조를 설계했습니다.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+		<div th:replace="~{features/footer :: replFoot}"></div>
+	</div>
+		<div th:replace="~{shared/script/TempScript :: repscript}"></div>
+</body>
+</html>

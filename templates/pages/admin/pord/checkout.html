@@ -1,0 +1,222 @@
+<!--******************************************************************************
+	Ditto 상품 구매 페이지
+
+	update : 2024-05-20
+	
+	관리자 : 길해원
+	
+  코딩 매뉴얼.
+  - 상품정보를 가져와서 구매를 진행한다
+  - 상풍 정보를 가져와서 오더 테이블에 넣는다
+  
+ ******************************************************************************-->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" >
+
+<title>Ditto</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
+	<link rel="stylesheet" href="../../../fonts/icomoon/style.css">
+	
+	<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../css/magnific-popup.css">
+	<link rel="stylesheet" href="../../../css/jquery-ui.css">
+	<link rel="stylesheet" href="../../../css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
+	
+	
+	<link rel="stylesheet" href="../../../css/aos.css">
+	
+	<link rel="stylesheet" href="../../../css/style.css">
+	<link rel="icon" href="../../../icon/dittoIcon.ico">
+	
+	
+	
+	
+	
+	
+</head>
+<body>
+	<div class="site-wrap">
+		<div th:replace="~{features/top :: replTop}"></div>
+		<!-- 상단 바 밑, Home / Cart / Checkout DIV 시작 -->
+    <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0"><a href="main">Home</a> <span class="mx-2 mb-0">/</span> <a href="cart">Cart</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">상품 결재</strong></div>
+        </div>
+      </div>
+    </div>
+    <!-- 상단 바 밑, Home / Cart / Checkout DIV 끝 -->
+
+
+
+    <div class="site-section">
+      <div class="container">
+
+        
+        
+        <!-- 바디 내, Billing Details DIV 시작 -->
+        <div class="row">
+          <div class="col-md-6 mb-5 mb-md-0">
+            <h2 class="h3 mb-3 text-black">배송지</h2>
+            <div class="p-3 p-lg-5 border">
+              <div class="form-group" id="meminfo">
+                <label for="c_country" class="text-black">지역<span class="text-danger">*</span></label>
+                <select id="c_country" class="form-control">
+                  <option value="1">서울</option>    
+                  <option value="2">경기도</option>    
+                  <option value="3">Algeria</option>    
+                  <option value="4">Afghanistan</option>    
+                  <option value="5">Ghana</option>    
+                  <option value="6">Albania</option>    
+                  <option value="7">Bahrain</option>    
+                  <option value="8">Colombia</option>    
+                  <option value="9">Dominican Republic</option>    
+                </select>
+              </div>
+              <div class="form-group row" >
+                <div class="col-md-6">
+                  <label for="c_fname" class="text-black">성함 <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="c_fname" name="c_fname" th:value="@{${result2.memberNm}}">
+                </div>
+             
+
+            
+
+              <div class="form-group row">
+                <div class="col-md-12">
+                  <label for="c_address" class="text-black">주소 <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="c_address" name="c_address" placeholder="Street address" th:value="@{${result2.memberAddr}}">
+                </div>
+              </div>
+
+                <div class="col-md-6">
+                  <label for="c_postal_zip" class="text-black">우편번호 <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="c_postal_zip" name="c_postal_zip" th:value="@{${result2.memberZipcd}}">
+                </div>
+              </div>
+
+              <div class="form-group row mb-5">
+                <div class="col-md-6">
+                  <label for="c_email_address" class="text-black">이메일주소 <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="c_email_address" name="c_email_address" th:value="@{${result2.memberEmail}}">
+                </div>
+                <div class="col-md-6">
+                  <label for="c_phone" class="text-black">휴대폰 <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="c_phone" name="c_phone" placeholder="전화 번호" th:value="@{${result2.memberTel}}">
+                </div>
+              </div>
+
+              
+     	   
+
+              <div class="form-group">
+                <label for="c_order_notes" class="text-black">배송 요청사항</label>
+                <textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control" placeholder="여기에 메모를 작성하십시오..."></textarea>
+              </div>
+            </div>
+          </div>
+          <!-- 바디 내, Billing Details DIV 끝 -->
+          
+          
+          
+          
+          
+          
+          <!-- 바디 내, Coupon Code DIV 시작 -->
+          <div class="col-md-6">
+            <div class="row mb-5">
+              <div class="col-md-12">
+                <h2 class="h3 mb-3 text-black">쿠폰 코드</h2>
+                <div class="p-3 p-lg-5 border">          
+                  <label for="c_code" class="text-black mb-3">쿠폰 코드가 있는 경우 입력하세요.</label>
+                  <div class="input-group w-75">
+                    <input type="text" class="form-control" id="c_code" placeholder="쿠폰 코드" aria-label="쿠폰 코드"  aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary btn-sm px-4" type="button" id="button-addon2" onclick="alert('쿠폰 적용기간이 아닙니다')">적용</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>         
+            <div class="row mb-5">
+              <div class="col-md-12">
+                <h2 class="h3 mb-3 text-black">주문 상세</h2>
+                <div class="p-3 p-lg-5 border">
+                  <table class="table site-block-order-table mb-5">
+                    <thead>
+
+                      <th>주문 상세</th>
+                      <th>가격</th>
+                    </thead>
+                    <tbody  th:each="dto : ${result}">
+                      <tr>
+                        <td>[[${dto.prodId.prodNm}]] <strong class="mx-2">x</strong> 1</td>
+                        <td>[[${dto.prodId.salePrice}]]원</td>
+                 
+
+            			<tr>	
+                        <td class="text-black font-weight-bold"><strong>장바구니 소계</strong></td>
+                        <td class="text-black">[[${dto.prodId.salePrice}]]원</td>
+	                      </tr>
+	                    
+                        <td class="text-black font-weight-bold"><strong>주문 총 가격</strong></td>
+                        <td class="text-black font-weight-bold"><strong>[[${dto.prodId.salePrice}]]원</strong></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="border p-3 mb-3">
+                    <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsebank" role="button" aria-expanded="false" aria-controls="collapsebank">Direct Bank Transfer</a></h3>
+
+                    <div class="collapse" id="collapsebank">
+                      <div class="py-2">
+                        <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="border p-3 mb-3">
+                    <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsecheque" role="button" aria-expanded="false" aria-controls="collapsecheque">Cheque Payment</a></h3>
+
+                    <div class="collapse" id="collapsecheque">
+                      <div class="py-2">
+                        <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="border p-3 mb-5">
+                    <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsepaypal" role="button" aria-expanded="false" aria-controls="collapsepaypal">Paypal</a></h3>
+
+                    <div class="collapse" id="collapsepaypal">
+                      <div class="py-2">
+                        <p class="mb-0">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                      </div>
+                    </div>
+                  </div>
+   				<tr th:each="dto : ${result}">
+                    <a th:href="@{addinfo(prodId=${dto.prodId.prodId},cartCount=${dto.cartCount},cartNo=${dto.cartId})}"><button class="btn btn-primary btn-lg btn-block">주문 하기</button> </a> 
+         		 </tr>
+                </div>
+              </div>
+            </div>
+            <!-- 바디 내, Coupon Code DIV 끝 -->
+          </div>
+        </div>
+        <!-- </form> -->
+      </div>
+    </div>
+		<div th:replace="~{features/footer :: replFoot}"></div>
+	</div>
+		<div th:replace="~{shared/script/TempScript :: repscript}"></div>
+		
+		
+ 
+
+
+</body>
+</html>

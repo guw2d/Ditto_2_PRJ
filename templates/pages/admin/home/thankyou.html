@@ -1,0 +1,65 @@
+<!--******************************************************************************
+	Ditto  주문 성공 페이지
+
+	update : 2024-05-20
+	
+	관리자 : 길혜원
+	
+  코딩 매뉴얼.
+	- 주문 성공 페이지 결제 완료 하면 나오도록 설정
+	
+ ******************************************************************************-->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=divice-width, initial-scale=1.0" >
+
+<title>Ditto</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
+	<link rel="stylesheet" href="../../../fonts/icomoon/style.css">
+	
+	<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../css/magnific-popup.css">
+	<link rel="stylesheet" href="../../../css/jquery-ui.css">
+	<link rel="stylesheet" href="../../../css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
+	
+	<link rel="icon" href="../../../icon/dittoIcon.ico">
+
+	<link rel="stylesheet" href="../../../css/style.css">
+</head>
+<body>
+	<div class="site-wrap">
+		<div th:replace="~{features/top :: replTop}"></div>
+			<link rel="stylesheet" href="../../../css/aos.css">
+			<!-- 상단 바 메뉴 밑 경로 바 -->
+		    <div class="bg-light py-3">
+		      <div class="container">
+		        <div class="row">
+		          <div class="col-md-12 mb-0"><a href="main">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">주문 성공</strong></div>
+		        </div>
+		      </div>
+		    </div>  
+		    
+		    <!-- 구매 완료 메인 -->
+		    <div class="site-section">
+		      <div class="container">
+		        <div class="row">
+		          <div class="col-md-12 text-center">
+		            <span class="icon-check_circle display-3 text-success"></span>
+		            <h2 class="display-3 text-black">Thank you!</h2>
+		            <p class="lead mb-5">주문이 성공적으로 완료되었습니다.</p>
+		            <p><a href="main" class="btn btn-sm height-auto px-4 py-3 btn-primary">쇼핑계속 하기</a></p>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+		<div th:replace="~{features/footer :: replFoot}"></div>
+	</div>
+		<div th:replace="~{shared/script/TempScript :: repscript}"></div>
+</body>
+</html>

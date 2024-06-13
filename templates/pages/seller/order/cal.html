@@ -1,0 +1,55 @@
+<!--******************************************************************************
+	Ditto scm 정산관리 페이지
+
+	update : 2024-05-20
+	
+	관리자 : 박낙주
+	
+  코딩 매뉴얼.
+  - 쇼핑몰 전산괸리 수정 설정할수 있는 부문 나중에 추가 
+  
+ ******************************************************************************-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+<meta charset="utf-8">
+<title>scm 페이지</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="" name="keywords">
+<meta content="" name="description">
+<!-- 구글 웹 폰트-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- 아이콘 글꼴 스타일시트 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!--  라이브러리 스타일시트 -->
+    <link href="../../../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../../../lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!--  맞춤 부트스트랩 스타일시트  -->
+    <link href="../../../css2/bootstrap.min.css" rel="stylesheet">
+
+    <!-- 템플릿 스타일 시트-->
+    <link href="../../../css2/style.css" rel="stylesheet">
+    <link rel="icon" href="../../../icon/dittoIcon.ico">
+</head>
+<body>
+<div class="container-xxl position-relative bg-white d-flex p-0">
+<!-- 텤프릿 스타일시드 -->
+
+        <!-- 스피너 끝 -->
+
+       <div th:replace="~{features/sellerSidebar :: sellerTop}"></div>
+        
+       <!-- 콘테츠 시작-->
+       <div class="content">
+       <div th:replace="~{features/sellerNavbar :: navscript}"></div>
+       </div>
+       <div th:replace="~{shared/script/sellerScript :: repscript}"></div>
+</div>
+</body>
+</html>

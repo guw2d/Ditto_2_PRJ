@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ditto</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
+<link rel="stylesheet" href="../../../fonts/icomoon/style.css">
+<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+<link rel="stylesheet" href="../../../css/magnific-popup.css">
+<link rel="stylesheet" href="../../../css/jquery-ui.css">
+<link rel="stylesheet" href="../../../css/owl.carousel.min.css">
+<link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
+<link rel="stylesheet" href="../../../css/aos.css">
+<link rel="stylesheet" href="../../../css/style.css">
+</head>
+<body>
+<div th:replace="~{features/top :: replTop}"></div>
+<div class="site-wrap">
+    <div class="bg-light py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-0">
+                    <a href="index">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">MyPage</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="site-section">
+        <div class="container">
+            <div class="card" style="border-radius: 1rem;">
+                <div class="card-body p-4 p-lg-5 text-black">
+                        <div align="center"> 
+                            <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                            <span class="h1 fw-bold mb-0">My page </span><br>
+                        </div>
+                        <p align="center">내 정보를 확인 및 수정해요.</p><br>
+                        <table class="table">
+                            <thead class="table-secondary" align="center">
+                                <tr>
+                                    <th scope="col">아이디</th>
+                                    <th scope="col">이름</th>
+                                    <th scope="col">이메일</th>                            
+                                    <th scope="col">전화번호</th>
+                                </tr>                              
+                            </thead>
+                            <tbody align="center">
+                                <tr>
+                                    <td th:text="${member.loginId}"></td>
+                                    <td th:text="${member.memberNm}"></td>
+                                    <td th:text="${member.memberEmail}"></td>
+                                    <td th:text="${member.memberTel}"></td>        
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table">
+                            <thead class="table-secondary" align="center">
+                                <tr>  
+                                    <th scope="col">주소</th>
+                                    <th scope="col">우편번호</th>
+                                </tr>
+                            </thead>
+                            <tbody align="center">
+                                <tr>
+                                    <td th:text="${member.memberAddr}"></td>
+                                    <td th:text="${member.memberZipcd}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table">
+                            <thead class="table-secondary" align="center">
+                                <tr>  
+                                    <th scope="col">가입 날짜</th>
+                                    <th scope="col">수정 날짜</th>
+                                </tr>
+                            </thead>
+                            <tbody align="center">
+                                <tr>
+                                    <td>[[${#temporals.format(member.IDt, 'yyyy/MM/dd')}]]</td>
+                                    <td>[[${#temporals.format(member.UDt, 'yyyy/MM/dd')}]]</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <a th:href="@{/admin/modify}"><button type="button" class="btn btn-outline-danger">내 정보 수정하기</button></a>
+                        <a th:href="@{/admin/secession}"><button type="button" class="btn btn-outline-danger">계정 탈퇴하기</button><br></a>
+                        <br>
+                        <br>
+                        <table class="table">
+                            <thead class="table-secondary" align="center">
+                                <tr>
+                                    <th scope="col">상품 이미지</th>
+                                    <th scope="col">상품 이름</th>
+                                    <th scope="col">주문 일자</th>
+                                    <th scope="col">주문 상태</th>
+                                    <th scope="col">취소</th>
+                                </tr>
+                            </thead>
+                            <tbody align="center">
+                                <tr th:each="order : ${orderList}">
+                                    <td><img th:src="|../../../ditto/2024/${order.ordImg}|"  alt="Image" class="img-fluid"  style="width: 100px; height: 100px;"></td>
+                                    <td th:text="${order.prodNm}"></td>
+                                    <td >[[${#temporals.format(order.orderDate, 'yyyy/MM/dd')}]]</td>
+                                    <td th:text="${order.orderStatus == 'N' ? '미배송' : (order.orderStatus == 'Y' ? '발송' : 'Unknown')}"></td>
+                                    <td>
+										<form th:id="@{orderForm +${order.orderNo}}" th:action="@{/admin/orderOut(orderId=${order.orderNo})}" method="post" data-status="${order.orderStatus}">
+										    <button type="button" class="btn btn-outline-danger" th:onclick="checkOrderStatus([[${order.orderStatus}]],[[${order.orderNo}]])">취소</button>
+										</form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+						
+                        <a href="#!" class="small text-muted">Terms of use.</a>
+                        <a href="#!" class="small text-muted">Privacy policy</a><br>
+                </div>            
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="~{features/footer :: replFoot}"></div>
+<div th:replace="~{shared/script/TempScript :: repscript}"></div>
+
+<script>
+    function checkOrderStatus(i,j) {
+        
+        if (i === 'Y') {
+            alert('해당 상품은 발송 되었습니다. 상품 문의를 해주세요.');
+        } else {
+        	document.getElementById("orderForm"+j).submit();
+        }
+    }
+</script>
+               <!-- 주문 취소 알림 메시지 -->
+                        <script th:if="${orderAlert}">
+						    alert('주문이 성공적으로 취소되었습니다.');
+						</script>
+</body>
+</html>

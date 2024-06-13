@@ -1,0 +1,95 @@
+<!--******************************************************************************
+	Ditto 아이디 페스워드 찾기 페이지
+
+	update : 2024-05-20
+	
+	관리자 : 김효정
+	
+  코딩 매뉴얼.
+  -  아이디 또은 비밀번호를 찾는 페이지 입니다.
+  
+ ******************************************************************************-->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=divice-width, initial-scale=1.0" >
+
+<title>Ditto</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
+	<link rel="stylesheet" href="../../../fonts/icomoon/style.css">
+	
+	<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../css/magnific-popup.css">
+	<link rel="stylesheet" href="../../../css/jquery-ui.css">
+	<link rel="stylesheet" href="../../../css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
+	
+	
+	<link rel="stylesheet" href="../../../css/aos.css">
+	
+	<link rel="stylesheet" href="../../../css/style.css">
+</head>
+<body>
+	<div class="site-wrap">
+		<div th:replace="~{features/top :: replTop}"></div>
+		<div class="site-wrap">
+		<div class="bg-light py-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 mb-0"><a href="index">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">find</strong></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="site-section">
+            <div class="container">
+                <div class="card" style="border-radius: 1rem;">
+                    <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                        <div class="card-body p-4 p-lg-5 text-black">
+                   			<form class="container" method="POST">
+							    <div class="d-flex align-items-center mb-3 pb-1">
+							        <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+							        <span class="h1 fw-bold mb-0">아이디/비밀번호 찾기</span><br>
+							    </div>
+							    <p class="small text-muted">아이디 또는 비밀번호를 잃어버렸나요?</p><br>
+							    
+							    <div class="mb-3">
+							        <label for="emailInput" class="form-label">가입 했던 이메일을 입력해주세요.</label>
+							        <input type="email" class="form-control" id="emailInput" name="email" placeholder="name@example.com">
+							    </div>
+							    <div class="col-auto">
+							        <button type="submit" formaction="/admin/findLoginId" class="btn btn-primary mb-3">아이디 찾기</button>
+							        <button type="submit" formaction="/admin/updatePassword" class="btn btn-primary mb-3">비밀번호 찾기</button>
+							    </div>
+							</form>
+
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>	
+	</div>
+		
+		
+		
+		
+		
+		<div th:replace="~{features/footer :: replFoot}"></div>
+	</div>
+		<div th:replace="~{shared/script/TempScript :: repscript}"></div>
+		
+				
+<!-- 아이디 비번 찾기 시 알럿 -->
+<script th:if="${orderAlert}">
+    alert("등록된 이메일을 찾을 수 없습니다.");
+</script>		
+		
+		
+	
+		
+</body>
+</html>
